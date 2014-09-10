@@ -1,0 +1,71 @@
+\ProvidesPackage{beamerthemeGSyC}[2008/11/20]
+\def\beamergsyc@version{3.10}
+
+% Copyright 2003      by Till Tantau  <tantau@users.sourceforge.net>
+%       and 2005-2006 by Jorg Cassens <jmt@cassens.org>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+\ifx\beamer@version\beamergsyc@version
+\else
+%  \PackageWarningNoLine{beamerthemeGSyC}{This version of beamerthemeGSyC (\beamertrondheim@version ) might not work with detected beamer class \beamer@version}
+\fi
+
+\mode<presentation>
+
+\newif\ifbeamer@minimal
+\newif\ifbeamer@nonav
+\newif\ifbeamer@blue
+\newif\ifbeamer@sand
+\newif\ifbeamer@numbers
+\newif\ifbeamer@shadow
+\newif\ifbeamer@mylogo
+\newif\ifbeamer@nologo
+
+\beamer@compresstrue
+\beamer@minimalfalse
+\beamer@nonavtrue
+\beamer@bluefalse
+\beamer@sandfalse
+\beamer@numberstrue
+\beamer@shadowtrue
+\beamer@mylogofalse
+\beamer@nologotrue
+
+\DeclareOptionBeamer{nocompress}{\beamer@compressfalse}
+\DeclareOptionBeamer{minimal}{\beamer@minimaltrue}
+\DeclareOptionBeamer{nav}{\beamer@nonavfalse}
+\DeclareOptionBeamer{blue}{\beamer@bluetrue}
+\DeclareOptionBeamer{sand}{\beamer@sandtrue}
+\DeclareOptionBeamer{nonumbers}{\beamer@numbersfalse}
+\DeclareOptionBeamer{noshadow}{\beamer@shadowfalse}
+\DeclareOptionBeamer{mylogo}{\beamer@mylogotrue}
+\DeclareOptionBeamer{nologo}{\beamer@nologofalse}
+
+\ProcessOptionsBeamer
+
+\ifbeamer@shadow
+  \useinnertheme[shadow=true]{rounded}
+\else
+  \useinnertheme{rounded}
+\fi
+\useoutertheme{gsyc}
+\usecolortheme{gsycblue}
+
+\ifbeamer@blue
+  \setbeamercolor{normal text}{fg=black,bg=white!95!gsycblue}
+\fi
+
+\ifbeamer@sand
+  \setbeamercolor{normal text}{fg=black,bg=white!80!gsycsand}
+\fi
+
+\ifbeamer@nonav
+  \setbeamertemplate{navigation symbols}{}  % Removes navigation symbols.
+\fi
+
+\setbeamerfont{block title}{size={}}
+
+\mode
+<all>
