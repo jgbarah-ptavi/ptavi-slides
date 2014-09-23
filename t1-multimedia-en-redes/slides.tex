@@ -1,0 +1,436 @@
+
+% $Id: $
+%
+%
+% Compilar a .pdf con LaTeX (pdflatex)
+% Es necesario instalar Beamer (paquete latex-beamer en Debian)
+%
+
+%
+% Gráficos:
+% Los gráficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
+% Los EPS deben convertirse a PDF (usar epstopdf)
+%
+
+\documentclass{beamer}
+\usetheme{GSyC}
+%\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphics}
+\usepackage{amssymb} % Simbolos matematicos
+
+%\definecolor{libresoftgreen}{RGB}{162,190,43}
+%\definecolor{libresoftblue}{RGB}{0,98,143}
+
+%\setbeamercolor{titlelike}{bg=libresoftgreen}
+
+%% Metadatos del PDF.
+\hypersetup{
+  pdftitle={Tema 1 - Multimedia en Redes},
+  pdfauthor={Gregorio Robles},
+  pdfcreator={GSyC, Universidad Rey Juan Carlos},
+  pdfproducer=PDFLaTeX,
+  pdfsubject={Tema 1 - Multimedia en Redes},
+}
+%%
+
+\begin{document}
+
+\title{Tema 1 - Multimedia en Redes}
+\subtitle{Información Audiovisual en Redes de Ordenadores}
+\institute{grex@gsyc.urjc.es \\
+GSyC, Universidad Rey Juan Carlos}
+\author{Gregorio Robles}
+\date[Sept 2014]{23 de septiembre de 2014}
+
+\frame{
+\maketitle
+}
+
+
+% Si el titulo o el autor se quieren acortar para los pies de página
+% se pueden redefinir aquí:
+%\title{Titulo corto}
+%\author{Autores abreviado}
+
+
+%% LICENCIA DE REDISTRIBUCION DE LAS TRANSPAS
+\frame{
+~
+\vspace{4cm}
+
+\begin{flushright}
+{\tiny
+Estas transparencias están basadas en parte \\
+en el siguiente libro
+(que podéis encontrar en la Biblioteca):\\
+\ \\
+RTP: Audio and Video for the Internet\\
+Autor: Colin Perkins\\
+Editorial: Addison Wesley\\
+Fecha de publicación: 2003\\
+ISBN: 0-672-32249-8\\
+\ \\
+Todos los errores en las mismas se deben a\\
+errores míos, y no son originarios del libro.\\
+\ \\
+
+}
+\end{flushright}
+}
+
+\section{Introducción}
+
+\begin{frame}
+\frametitle{Beneficios de transporte multimedia basado en paquetes}
+
+\begin{itemize}
+\item Una red IP para transporte multimedia tiene algunas ventajas en eficiencia y flexibilidad que pueden ser mayores que las desventajas.
+\item La primera ventaja de usar IP es que ofrece una red unificada y convergente.
+\item Además, el uso de multicast permite el envío de datos potencialmente a un gran número de receptores.
+\item Pero el punto más importante (y con gran futuro): IP permite nuevos servicios
+  \begin{itemize}
+    \item La convergencia permite gran interacción entre multimedia en tiempo real y otras aplicaciones, con la posibilidad de nuevos servicios.
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Midiendo el rendimiento de una red IP}
+
+\begin{itemize}
+\item Medir, predecir y modelar el comportamiento de redes es un problema complejo con múltiples detalles.
+\item La red puede (y frecuentemente lo hará) comportarse mal. Tenemos que diseñar servicios y aplicaciones teniéndolo en cuenta.
+\item Algunos protocolos ``altos'' (como TCP) ocultan parte de este comportamiento, pero siempre habrá cosas visibles para la aplicación.
+\item Hay que tener en cuenta la heterogeneidad de las redes.
+\item Los programadores rara vez utilizan los servicios IP \emph{en crudo}.
+\item Por contra, construyen sus aplicaciones sobre protocolos de más alto nivel, típicamente UDP o TCP.
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Tasa de envío TCP sobre IP}
+
+\begin{itemize}
+\item TCP incrementa la tasa de envío hasta que la red muestra pérdidas
+\item Entonces, TCP reduce la tasa de envíos
+\item Este proceso se hace de manera repetitiva
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=9cm]{figs/sample-tcp-sending-rate.png}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Más sobre TCP sobre IP}
+
+\begin{itemize}
+\item La combinación de retransmisión, buffering y prueba del ancho de banda disponible tiene varios efectos:
+\begin{itemize}
+  \item TCP es fiable y, si la conexión se mantiene abierta, todos los datos serán entregados. Si falla la conexión, los puntos finales son notificados
+  \item Una aplicación tiene poco control sobre la temporización de la entrega de paquetes
+  \item Pruebas de ancho de banda pueden causar saturación y en pérdidas (en el propio flujo y en ajenos)
+\end{itemize}
+\item Para nosotros es importante darse cuenta la diferencia fundamental entre TCP y UDP: el trade-off entre fiabilidad (TCP) y puntualidad (UDP).
+\end{itemize}
+
+\end{frame}
+
+
+\section{Transporte Multimedia en Redes IP}
+
+\begin{frame}
+\frametitle{Transporte de multimedia en redes de paquetes (I)}
+
+\begin{itemize}
+\item Tiempo real: el receptor reproduce el flujo multimedia según lo recibe, en vez de guardarlo en un fichero para posterior reproducción
+\item Caso ideal: la reproducción en el receptor es inmediata y síncrona
+\item Hay un retardo inevitable por el retraso que impone la red
+\item Algunas pérdidas son aceptables; ya llegan los siguientes datos
+\item Muchas aplicaciones multimedia admiten algunas pérdidas:
+\begin{itemize}
+  \item El sistema de telefonía IP supone la pérdida de una quincésima parte de un segundo, algo que con buen tratamiento de error es muy difícil de notar
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Transporte de multimedia en redes de paquetes (II)}
+
+\begin{itemize}
+    \item Primer requisito: variación predecible del tiempo de tránsito
+    \item Requisito menor: entrega fiable de todos los paquetes.
+\end{itemize}
+
+\begin{itemize}
+\item La cantidad de pérdidas aceptables dependen de la aplicación, el método de codificación y el patrón de pérdidas
+\item Eligiendo protocolo de transporte:
+\begin{itemize}
+  \item TCP/IP no es apropiado; favorece fiabilidad sobre puntualidad
+  \item UDP/IP es apropiado si las variaciones en el tiempo de tránsito se pueden conocer y las pérdidas son aceptables
+\end{itemize}
+%\item El protocolo RTP (Real-time Transport Protocol) se construye sobre UDP/IP y provee recuperación de puntualidad y detección de pérdidas para la elaboración de sistemas más robustos
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Transporte de multimedia en redes de paquetes (y III)}
+
+\begin{itemize}
+\item TCP es limitado para aplicaciones de tiempo real, pero algunas aplicaciones lo utilizan
+\item Estas aplicaciones intentan estimar el rendimento de la conexión TCP y adaptar su tasa de envío.
+\item Este enfoque puede hacerse cuando retrasos punto a punto no son importantes y la aplicación puede hacer buffering de varios segundos.
+\item La primera razón para el uso de TCP en realidad es para pasar por firewalls que bloquean UDP (aunque esta situación está cambiando paulatinamente).
+\end{itemize}
+
+\end{frame}
+
+
+
+\section{Rendimiento de una red IP}
+
+\begin{frame}
+\frametitle{Características de rendimiento de una red IP}
+
+\begin{itemize}
+\item No es posible determinar directamente el tipo de redes que atravesará un paquete IP % podría ser desde una línea telefónica hasta fibra óptica
+ni la congestión de las mismas.
+\item La única manera de conocer el rendimiento es mediante observación y medición.
+%\item The design of the IP layer means that the number of parameters is limited, and that number often can be further constrained by the needs of the application.
+\item Preguntas clave:
+\begin{itemize}
+  \item ¿Cuál es la probabilidad de que un paquete se pierda en la red?
+  \item ¿Cuál es la probabilidad de que un paquete se corrompa en la red?
+  \item ¿Cuánto tiempo le lleva a un paquete atravesar la red?
+  \item ¿Es el tiempo de tránsito constante o variable?
+  \item ¿Qué tamaño de paquete se puede utilizar?
+  \item ¿Cuál es la tasa máxima a la que podemos enviar paquetes?
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{¿Qué afecta a estas medidas?}
+
+\begin{itemize}
+\item El tipo de red (o tipos de redes que se atraviesan).
+\item El número de puntos intermedios.
+\item Otros tipos de tráficos simultáneo.
+\item La distancia geográfica del emisor y del receptor.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Internet hoy (¿y mañana?)}
+
+\begin{itemize}
+\item A día de hoy, la mayoría de las rutas de red son fijas.
+\item Eso implica alta fiabilidad; las pérdidas suelen ser por congestión en los routers.
+\item Esto puede cambiar en el futuro, con el uso masivo de redes inalámbricas.
+
+\item La mayoría del tráfico (96\% de los bytes, 62\% de los flujos) es TCP.
+\item En TCP, las pérdidas de paquetes son señal de que se ha alcanzado el cuello de botella del ancho de banda.
+
+\item Según desarrollemos nuevas aplicaciones sobre IP, tendremos que ser conscientes de lo que envíamos a la red para no causar problemas a los demás usuarios.
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Midiendo el rendimiento IP}
+
+\begin{itemize}
+\item Hay algunos estudios que han medido el comportamiento de Internet en un amplio rango de condiciones.
+\item Se pueden obtener varias métricas de pérdida de paquetes:
+\begin{itemize}
+  \item Tasa media de pérdidas da una medida general de la congestión de la red.
+  \item Patrones de pérdidas y correlación para tener una idea de las dinámicas de la red.
+\end{itemize}
+
+\item Del 30\% al 70\%, dependiendo del camino y de la fecha, de los flujos no tienen pérdidas.
+\item En aquellos flujos con pérdidas, las pérdidas fueron de entre un 3\% y un 17\%.
+
+\item Para los curiosos: Internet Traffic Report.
+
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Patrones de pérdidas de paquetes}
+
+\begin{itemize}
+\item Es muy instructivo considerar los patrones a corto plazo de pérdidas.
+\item Si las pérdidas estuvieran distribuidas uniformemente en el tiempo, podríamos esperar que la probabilidad de que un paquete se perdiera fuera la misma que la de perder el anterior.
+\item Esto implicaría que la pérdida de paquetes son hechos aislados, algo deseable, ya que sería más fácil recuperarnos de una pérdida que de la de una ráfaga.
+\item Por desgracia, la probabilidad de que un paquete se pierda es mayor si se perdió el paquete anterior.
+\item La mayoría de las pérdidas (cerca de un 90\%) son eventos únicos.
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Patrones de pérdidas de paquetes (y II)}
+
+\begin{itemize}
+\item La probabilidad de pérdidas mayores se muestra en la siguiente imagen
+\end{itemize}
+\begin{center}
+  \includegraphics[width=10cm]{figs/frecuency-distribution-of-lost-packages.png}
+\end{center}
+
+
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Duplicación de paquetes}
+
+\begin{itemize}
+\item Sorprendentemente puede haber paquetes duplicados
+\item Generalmente se debe a routers mal configurados
+\item Duplicación de paquetes desperdicia ancho de banda
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Paquetes corrompidos}
+
+\begin{itemize}
+\item Cada paquete IP contiene un \emph{checksum} que protege la integridad de la cabecera, pero no de la carga.
+\item Tanto TCP como UDP tienen también \emph{checksum} de todo el paquete
+\item Aproximadamente en uno de cada 7.500 paquetes suele fallar el \emph{checksum} TCP o UDP en un red alámbrica (en inalámbricas habrá, en general, más).
+\item A nivel de aplicación, los paquetes corrompidos pueden no existir; son paquetes perdidos.
+\item En algunos casos sería interesante por parte de la aplicación recibir esos paquetes para tratarlos convenientemente.
+\item Por eso, UDP da la posibilidad de ``pasar'' del \emph{checksum}
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Tiempo de tránsito en la Red}
+
+\begin{itemize}
+\item El tiempo de tránsito depende de la ruta
+\item Los componentes que afectan a la velocidad son: velocidad de los enlaces, número de routers intermedios, y el tamaño de las colas en los routers
+\item Aunque en una ruta corta se suele tardar menos, hay que tener cuidado con la definición de ``corta''
+\item Un camino corto en distancia física puede ser largo en número de saltos, y en muchas ocasiones los retrasos por colas es el factor más grande
+\item En términos de redes, el camino más corto es el de menor número de saltos (excepción: redes por satélite)
+\item Si el retraso es menor a 300 milisegundos (ms), las personas no notamos el retraso
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Tiempo de tránsito en la Red (y II)}
+
+\begin{itemize}
+\item Además, es interesante ver si el tiempo de tránsito varía de paquete en paquete.
+\item Una buena medida sería la diferencia entre tiempo de llegada y de salida para cada paquete.
+\item Pero ésta es difícil, ya que requiere sincronización de relojes.
+\item {\bf Jitter}: variación en el tiempo de tránsito de paquetes entrantes. Escenario ideal: \emph{jitter} = 0.
+\item Se ha observado que un total del 2\% de paquetes TCP llegaron desordenados, llegando hasta el 15\% en algunos flujos.
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Tamaños de paquete aceptables}
+
+\begin{itemize}
+\item El nivel IP acepta paquetes de varios tamaños, de hasta 65.535 bytes (o hasta el límite determinado en la MTU, \emph{maximum transmission unit}).
+\item Un valor común es 1.500 bytes, que es el tamaño de paquete más grande que puede entregar Ethernet.
+\item IPv4 soporta fragmentación, de manera que cuando un paquete supera el MTU de un enlace, se puede dividir en varios. La fragmentación introduce problemas: efecto multiplicador de pérdidas.
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Efectos de multicast}
+
+\begin{itemize}
+\item IP multicast permite a un emisor enviar datos a muchos receptores a la vez (el soporte es relativamente nuevo).
+\item La red crea las copias del paquete según necesidad, para que sólo una copia del paquete atraviese cada enlace.
+
+\item Enviar a un grupo significa que hay más cosas que pueden ir mal: la calidad de la recepcióon no viene afectada por una ruta de la red, sino por la ruta del emisor a cada receptor.
+\item El factor determinante es la heterogeneidad, que hace que sea difícil satisfacer a todos los receptores.
+\end{itemize}
+
+\end{frame}
+
+
+
+%\begin{frame}
+%\frametitle{Efectos de tecnologías de red}
+%
+%\begin{itemize}
+%\item The primary effect of different network technologies is to increase the heterogeneity of the network. 
+%\item If you are designing an application to work over a restricted subset of these technologies, you may be able to leverage the facilities of the underlying network to improve the quality of the connection that your application sees. 
+%\item In other cases the underlying network may impose additional challenges on the designer of a robust application.
+%\item The challenge in designing audiovisual applications to operate over IP is making them reliable in the face of network problems and unexpected conditions.
+%\end{itemize}
+%
+%\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Conclusiones sobre características medidas}
+
+\begin{itemize}
+\item Podemos resumir que:
+\begin{itemize}
+  \item Una aplicación debería estar preparada para capear con pérdidas de hasta un 5\% de los paquetes
+  \item Pérdida de paquetes individuales es el evento más frecuente
+  \item La probabilidad de perder un paquete no es uniforme: a veces ocurren ráfagas. Una aplicación que trate pérdidas de dos o tres paquetes seguidos debería ser suficiente
+  \item Duplicación es infrecuente, pero ocurre
+  \item También es infrecuente el hecho de recibir paquetes corrompidos. TCP o UDP los detectan casi siempre (y los desechan)
+  \item El tiempo de tránsito no es uniforme y se puede observar \emph{jitter}, aunque la mayor parte del \emph{jitter} es pequeño
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\frame{
+\maketitle
+}
+
+\end{document}
