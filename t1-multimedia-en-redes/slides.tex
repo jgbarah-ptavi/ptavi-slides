@@ -18,11 +18,21 @@
 \usepackage[latin1]{inputenc}
 \usepackage{graphics}
 \usepackage{amssymb} % Simbolos matematicos
+%\usepackage{geometry}
+%\usepackage{enumitem}
 
 %\definecolor{libresoftgreen}{RGB}{162,190,43}
 %\definecolor{libresoftblue}{RGB}{0,98,143}
 
 %\setbeamercolor{titlelike}{bg=libresoftgreen}
+
+\newcommand{\authorimage}[2]{
+\begin{flushright}
+{\tiny
+(c) #1 #2 (from Flickr)
+}
+\end{flushright}
+}
 
 %% Metadatos del PDF.
 \hypersetup{
@@ -37,11 +47,11 @@
 \begin{document}
 
 \title{Tema 1 - Multimedia en Redes}
-\subtitle{Información Audiovisual en Redes de Ordenadores}
+\subtitle{Protocolos para la Transmisión de Audio y Video en Internet}
 \institute{grex@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
 \author{Gregorio Robles}
-\date[Sept 2014]{23 de septiembre de 2014}
+\date[Sept 2014]{24 de septiembre de 2014}
 
 \frame{
 \maketitle
@@ -79,8 +89,50 @@ errores míos, y no son originarios del libro.\\
 \end{flushright}
 }
 
+
+%-----------------------    ---------------------------------
+\usebackgroundtemplate{\includegraphics[width=13.5cm]{figs/why.jpg}}
+% 
+
+\begin{frame}
+\frametitle{¿Por qué estamos aquí?}
+
+\vspace{4.2cm}
+
+\begin{itemize}%[leftmargin=3.5cm]
+  \item ¿Qué hace del multimedia diferente a lo que hemos visto ahora?
+  \item ¿Qué características son las más importantes?
+  \item ¿Qué nos vale y qué tenemos que crear en este nuevo escenario?
+\end{itemize}
+
+\authorimage{2012}{Bart Everson}
+
+\end{frame}
+\usebackgroundtemplate{}
+
+% queuetrucks.jpg
+%\authorimage{2007}{Roger Greenhalgh}
+
+% 
+%\authorimage{}{}
+
+
+%-----------------------    ---------------------------------
 \section{Introducción}
 
+%-----------------------    ---------------------------------
+%\begin{frame}
+%\frametitle{Más preguntas}
+
+%\begin{itemize}
+%  \item ¿Por qué IP sí?
+%  \item ¿Por qué TCP no?
+%  \item ¿Qué no nos da IP y deberíamos tener?
+%\end{itemize}
+%
+%\end{frame}
+
+%-----------------------    ---------------------------------
 \begin{frame}
 \frametitle{Beneficios de transporte multimedia basado en paquetes}
 
