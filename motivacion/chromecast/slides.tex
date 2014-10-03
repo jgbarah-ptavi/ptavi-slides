@@ -1,0 +1,161 @@
+%
+% $Id: $
+%
+%
+% Compilar a .pdf con LaTeX (pdflatex)
+% Es necesario instalar Beamer (paquete latex-beamer en Debian)
+%
+
+%
+% Gráficos:
+% Los gráficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
+% Los EPS deben convertirse a PDF (usar epstopdf)
+%
+
+\documentclass{beamer}
+\usetheme{GSyC}
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{format/libresoft-bg.png}}
+%\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphics}
+\usepackage{amssymb} % Simbolos matematicos
+
+\ProcessOptions
+
+%% Metadatos del PDF.
+\hypersetup{
+  pdftitle={Protocolos para la Transmisión de Audio y Vídeo por Internet},
+  pdfauthor={Gregorio Robles, Jesús M. González Barahona},
+  pdfcreator={GSyC, Universidad Rey Juan Carlos},
+  pdfproducer=PDFLaTeX,
+  pdfsubject={Protocolos para la Transmisión de Audio y Vídeo por Internet},
+}
+%%
+
+\begin{document}
+
+\title{Google Chromecast}
+\subtitle{Protocolos para la Transmisión de Audio y Vídeo en Internet}
+\institute{\{grex,jgb\}@gsyc.urjc.es \\
+GSyC, Universidad Rey Juan Carlos}
+\author[Gregorio Robles, Jesús M. González Barahona]{Gregorio Robles, Jesús M. González Barahona}
+\date[Sept 2014]{24 de septiembre de 2014}
+
+
+\frame{
+\maketitle
+}
+
+
+% Si el titulo o el autor se quieren acortar para los pies de página
+% se pueden redefinir aquí:
+%\title{Titulo corto}
+%\author{Autores abreviado}
+
+
+%% LICENCIA DE REDISTRIBUCION DE LAS TRANSPAS
+\frame{
+~
+\vspace{4cm}
+
+\begin{flushright}
+\includegraphics[width=2.2cm]{figs/by-sa}
+
+{\tiny
+(cc) 2014 Gregorio Robles, Jesús M. González Barahona \\
+  Some rights reserved. This work licensed under Creative Commons \\
+  Attribution-ShareAlike License. To view a copy of full license, see \\
+\ \\
+  http://creativecommons.org/licenses/by-sa/3.0/ or write to \\
+  Creative Commons, 559 Nathan Abbott Way, Stanford, \\
+  California 94305, USA. \\
+\ 
+}
+\end{flushright}
+}
+%%
+
+
+%-----------------------    ---------------------------------
+
+\begin{frame}
+\frametitle{Google Chromecast}
+
+\begin{center}
+  \includegraphics[width=10cm]{figs/chromecast.jpg}
+\end{center}
+
+
+\begin{flushright}
+{\tiny
+Source: Wikipedia
+}
+\end{flushright}
+
+\end{frame}
+
+
+
+%-----------------------    ---------------------------------
+
+\begin{frame}
+\frametitle{Google Chromecast conectado}
+
+\begin{center}
+  \includegraphics[width=10cm]{figs/enlatele.jpg}
+\end{center}
+
+
+\begin{flushright}
+{\tiny
+Source: Wikipedia
+}
+\end{flushright}
+
+\end{frame}
+
+
+
+%-----------------------    ---------------------------------
+
+\begin{frame}
+\frametitle{¿Qué es Chromecast?}
+
+\begin{itemize}
+   \item Permite convertir tu TV en un \emph{smart TV}
+   \item Se maneja desde un dispositivo móvil
+   \item Las aplicaciones pueden tener soporte para Chromecast
+   \item Se conecta al puerto HDMI de la TV y la wifi
+   \item Permite hacer \emph{streaming}
+   \item Cuesta 35 euros
+   \item Programable mediante SDK propio
+\end{itemize}
+
+\end{frame}
+
+
+%-----------------------    ---------------------------------
+
+\begin{frame}
+\frametitle{Tu móvil en la TV}
+
+\begin{center}
+  \includegraphics[width=10cm]{figs/mirror.png}
+\end{center}
+
+
+\begin{flushright}
+{\tiny
+Source: Google
+}
+\end{flushright}
+
+\end{frame}
+
+
+
+\frame{
+\maketitle
+}
+
+\end{document}
