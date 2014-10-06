@@ -7,8 +7,8 @@
 %
 
 %
-% Gr·ficos:
-% Los gr·ficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
+% Gr√°ficos:
+% Los gr√°ficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
 % Los EPS deben convertirse a PDF (usar epstopdf)
 %
 
@@ -26,18 +26,18 @@
 
 %% Metadatos del PDF.
 \hypersetup{
-  pdftitle={TeorÌa Tema 3 - Session Initiation Protocol},
+  pdftitle={Teor√≠a Tema 3 - Session Initiation Protocol},
   pdfauthor={Gregorio Robles},
   pdfcreator={GSyC, Universidad Rey Juan Carlos},
   pdfproducer=PDFLaTeX,
-  pdfsubject={TeorÌa Tema 3 - Session Initiation Protocol},
+  pdfsubject={Teor√≠a Tema 3 - Session Initiation Protocol},
 }
 %%
 
 \begin{document}
 
-\title{TeorÌa Tema 3 - Session Initiation Protocol}
-\subtitle{Protocolos para la TransmisiÛn de Audio y VÌdeo en Internet}
+\title{Teor√≠a Tema 3 - Session Initiation Protocol}
+\subtitle{Protocolos para la Transmisi√≥n de Audio y V√≠deo en Internet}
 \institute{grex@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
 \author{Gregorio Robles}
@@ -48,8 +48,8 @@ GSyC, Universidad Rey Juan Carlos}
 }
 
 
-% Si el titulo o el autor se quieren acortar para los pies de p·gina
-% se pueden redefinir aquÌ:
+% Si el titulo o el autor se quieren acortar para los pies de p√°gina
+% se pueden redefinir aqu√≠:
 %\title{Titulo corto}
 %\author{Autores abreviado}
 
@@ -61,7 +61,7 @@ GSyC, Universidad Rey Juan Carlos}
 
 \begin{flushright}
 {\tiny
-(cc) 2008-14 Jes˙s M. Gonz·lez Barahona, Gregorio Robles \\
+(cc) 2008-14 Jes√∫s M. Gonz√°lez Barahona, Gregorio Robles \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 \ \\
@@ -77,16 +77,16 @@ GSyC, Universidad Rey Juan Carlos}
 \section{SIP: Session Initiation Protocol}
 
 \begin{frame}
-\frametitle{IntroducciÛn}
+\frametitle{Introducci√≥n}
 
 \begin{itemize}
-\item Session Initiation Protocol: iniciaciÛn de sesiones sobre IP
+\item Session Initiation Protocol: iniciaci√≥n de sesiones sobre IP
 \item RFC 2543 (SIP 2.0), RFC 3261 (clarified SIP 2.0)
-\item Protocolo de seÒalizaciÛn: prepara el establecimiento de
+\item Protocolo de se√±alizaci√≥n: prepara el establecimiento de
   sesiones multimedia
-\item Concepto amplio de sesiÛn: una llamada entre dos, una
+\item Concepto amplio de sesi√≥n: una llamada entre dos, una
   videoconferencia, un juego interactivo entre varios, etc.
-\item Protocolo en evoluciÛn (mediante adiciones)
+\item Protocolo en evoluci√≥n (mediante adiciones)
 \item Usado en Internet, 3GPP
 \item En VoIP compite con H.323 (IETF frente a ITU, en cierta medida)
 \end{itemize}
@@ -96,15 +96,15 @@ GSyC, Universidad Rey Juan Carlos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Principales caracterÌsticas}
+\frametitle{Principales caracter√≠sticas}
 
 \begin{itemize}
-\item Ligero (sÛlo seis mÈtodos)
+\item Ligero (s√≥lo seis m√©todos)
 \item Basado en texto (similar a HTTP)
 \item Independiente del nivel de transporte (TCP, UDP, ATM, etc.)
-\item Se encarga del establecimiento y la terminaciÛn de la
-  comunicaciÛn
-\item Fundamentalmente es un protocolo peer-to-peer, aunque tiene servicores
+\item Se encarga del establecimiento y la terminaci√≥n de la
+  comunicaci√≥n
+\item Fundamentalmente es un protocolo peer-to-peer, aunque tiene servidores
 \item Protocolo sin estado
 \item Puerto habitual: 5060
 \end{itemize}
@@ -114,11 +114,11 @@ GSyC, Universidad Rey Juan Carlos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{RelaciÛn con otros protocolos}
+\frametitle{Relaci√≥n con otros protocolos}
 
 \begin{itemize}
 \item Protocolo portador para descripciones SDP
-\item Protocolo seÒalizador para RTP
+\item Protocolo se√±alizador para RTP
 \item Funcionalidad parcialmente similar a H.323
 \item Hasta cierto punto equivalente a SS7, pero para VoIP
 \end{itemize}
@@ -131,11 +131,11 @@ GSyC, Universidad Rey Juan Carlos}
 \frametitle{Elementos de red}
 
 \begin{itemize}
-\item Terminales o \emph{user agents} (usualmente, los que establecer·n la
-  comunicaciÛn): Pueden comunicarse directamente, sin m·s elementos
+\item Terminales o \emph{user agents} (usualmente, los que establecer√°n la
+  comunicaci√≥n): Pueden comunicarse directamente, sin m√°s elementos
 \item Proxy: intermediarios que autentican, encaminan peticiones de
   llamada, etc
-\item Registrar: permite informar de la localizaciÛn actual
+\item Registrar: permite informar de la localizaci√≥n actual
 \item Redirect: genera redirecciones a peticiones, de manera que dirige las peticiones al siguiente servidor.
 \end{itemize}
 
@@ -147,12 +147,12 @@ GSyC, Universidad Rey Juan Carlos}
 \frametitle{Peticiones}
 
 \begin{itemize}
-\item INVITE: invitaciÛn a sesiÛn
-\item ACK: confirmaciÛn de respuesta a INVITE
-\item BYE: terminaciÛn de sesiÛn
-\item CANCEL: cancela peticiones, pero no termina la sesiÛn
+\item INVITE: invitaci√≥n a sesi√≥n
+\item ACK: confirmaci√≥n de respuesta a INVITE
+\item BYE: terminaci√≥n de sesi√≥n
+\item CANCEL: cancela peticiones, pero no termina la sesi√≥n
 \item OPTIONS: pregunta las capacidades de los servidores
-\item REGISTER: registra la direcciÛn con un registrar
+\item REGISTER: registra la direcci√≥n con un registrar
 \end{itemize}
 
 \end{frame}
@@ -163,13 +163,13 @@ GSyC, Universidad Rey Juan Carlos}
 \frametitle{Cabeceras}
 
 \begin{itemize}
-\item {\bf Via}: muestra el protocolo de transporte y la ruta de la petciÛn. Cada proxy aÒade una lÌnea a este campo
-\item {\bf From}: muestra la direcciÛn del que llama.
-\item {\bf To}: muestra la direcciÛn del llamado.
-\item {\bf Call-Id}: Identificador ˙nico para cada llamada; contiene la direcciÛn del host. Ser· la misma para todos los mensajes en una misma sesiÛn.
-\item {\bf Cseq}: empieza con un n˙mero aleatorio y define de manera secuencial cada mensaje.
-\item {\bf Contact}: Muestra una o m·s direcciones que pueden ser utilizadas para contactar al usuario
-\item {\bf User Agent}: nombre de la aplicaciÛn cliente
+\item {\bf Via}: muestra el protocolo de transporte y la ruta de la petici√≥n. Cada proxy a√±ade una l√≠nea a este campo
+\item {\bf From}: muestra la direcci√≥n del que llama.
+\item {\bf To}: muestra la direcci√≥n del llamado.
+\item {\bf Call-Id}: Identificador √∫nico para cada llamada; contiene la direcci√≥n del host. Ser√° la misma para todos los mensajes en una misma sesi√≥n.
+\item {\bf Cseq}: empieza con un n√∫mero aleatorio y define de manera secuencial cada mensaje.
+\item {\bf Contact}: Muestra una o m√°s direcciones que pueden ser utilizadas para contactar al usuario
+\item {\bf User Agent}: nombre de la aplicaci√≥n cliente
 \end{itemize}
 
 \end{frame}
@@ -208,9 +208,9 @@ Authorization: Digest username="20000",realm="192.168.0.101",
 \frametitle{Respuestas (ejemplos)}
 
 \begin{itemize}
-\item 1xx: informaciÛn (180: llamando)
-\item 2xx: Èxito (200: OK)
-\item 3xx: redirecciÛn (302: movimiento temporal)
+\item 1xx: informaci√≥n (180: llamando)
+\item 2xx: √©xito (200: OK)
+\item 3xx: redirecci√≥n (302: movimiento temporal)
 \item 4xx: fallo (404: usuario no encontrado)
 \item 5xx: fallo del servidor (500: error interno del servidor)
 \item 6xx: fallo global
@@ -262,10 +262,10 @@ Authorization: Digest username="20100",realm="192.168.0.101",
 \item Los firewalls tienen que, al menos, tener el puerto 5060 abierto (y no filtrar paquetes UDP).
 \item Tipos de NATs:
 \begin{itemize}
-  \item Full cone NATs: cualquiera puede enviar paquetes a nuestra m·quina.
-  \item Address-Restricted cone NAT: sÛlo pueden enviar paquetes a nuestra m·quina aquÈllos a los que les hemos enviado paquetes con anterioridad (misma IP)
-  \item Port-Restricted cone NAT: sÛlo pueden enviar paquetes a nuestra m·quina aquÈllos a los que les hemos enviado paquetes con anterioridad (misma IP y mismo puerto)
-  \item Symmetric NAT: Si se manda un paquete con la misma direcciÛn interna y puerto a un destino diferente se usar· un mapeo diferente. SÛlo el host externo que recibe un paquete puede mandar un paquete UDP de vuelta al host interno.
+  \item Full cone NATs: cualquiera puede enviar paquetes a nuestra m√°quina.
+  \item Address-Restricted cone NAT: s√≥lo pueden enviar paquetes a nuestra m√°quina aqu√©llos a los que les hemos enviado paquetes con anterioridad (misma IP)
+  \item Port-Restricted cone NAT: s√≥lo pueden enviar paquetes a nuestra m√°quina aqu√©llos a los que les hemos enviado paquetes con anterioridad (misma IP y mismo puerto)
+  \item Symmetric NAT: Si se manda un paquete con la misma direcci√≥n interna y puerto a un destino diferente se usar√° un mapeo diferente. S√≥lo el host externo que recibe un paquete puede mandar un paquete UDP de vuelta al host interno.
 \end{itemize}
 \end{itemize}
 
@@ -276,13 +276,13 @@ Authorization: Digest username="20100",realm="192.168.0.101",
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Ejemplo de una sesiÛn}
+\frametitle{Ejemplo de una sesi√≥n}
 
 \begin{center}
   \includegraphics[width=6.6cm]{figs/complete-sip-session.png}
 \end{center}
 
-En los puntos finales, hay un \emph{user agent}. Entre medias, tenemos un servidor que act˙a de \emph{Registrar} y \emph{Proxy}.
+En los puntos finales, hay un \emph{user agent}. Entre medias, tenemos un servidor que act√∫a de \emph{Registrar} y \emph{Proxy}.
 
 \end{frame}
 
