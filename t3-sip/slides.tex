@@ -114,13 +114,31 @@ GSyC, Universidad Rey Juan Carlos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Relación con otros protocolos}
+\frametitle{Peticiones}
 
 \begin{itemize}
-\item Protocolo portador para descripciones SDP
-\item Protocolo señalizador para RTP
-\item Funcionalidad parcialmente similar a H.323
-\item Hasta cierto punto equivalente a SS7, pero para VoIP
+\item INVITE: invitación a sesión
+\item ACK: confirmación de respuesta a INVITE
+\item BYE: terminación de sesión
+\item CANCEL: cancela peticiones, pero no termina la sesión
+\item OPTIONS: pregunta las capacidades de los servidores
+\item REGISTER: registra la dirección con un registrar
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Respuestas (ejemplos)}
+
+\begin{itemize}
+\item 1xx: información (180: llamando)
+\item 2xx: éxito (200: OK)
+\item 3xx: redirección (302: movimiento temporal)
+\item 4xx: fallo (404: usuario no encontrado)
+\item 5xx: fallo del servidor (500: error interno del servidor)
+\item 6xx: fallo global
 \end{itemize}
 
 \end{frame}
@@ -141,21 +159,21 @@ GSyC, Universidad Rey Juan Carlos}
 
 \end{frame}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Peticiones}
+\frametitle{Ejemplo de una sesión}
 
-\begin{itemize}
-\item INVITE: invitación a sesión
-\item ACK: confirmación de respuesta a INVITE
-\item BYE: terminación de sesión
-\item CANCEL: cancela peticiones, pero no termina la sesión
-\item OPTIONS: pregunta las capacidades de los servidores
-\item REGISTER: registra la dirección con un registrar
-\end{itemize}
+\begin{center}
+  \includegraphics[width=6.6cm]{figs/complete-sip-session.png}
+\end{center}
+
+En los puntos finales, hay un \emph{user agent}. Entre medias, tenemos un servidor que actúa de \emph{Registrar} y \emph{Proxy}.
 
 \end{frame}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -202,21 +220,6 @@ Authorization: Digest username="20000",realm="192.168.0.101",
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Respuestas (ejemplos)}
-
-\begin{itemize}
-\item 1xx: información (180: llamando)
-\item 2xx: éxito (200: OK)
-\item 3xx: redirección (302: movimiento temporal)
-\item 4xx: fallo (404: usuario no encontrado)
-\item 5xx: fallo del servidor (500: error interno del servidor)
-\item 6xx: fallo global
-\end{itemize}
-
-\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -255,6 +258,21 @@ Authorization: Digest username="20100",realm="192.168.0.101",
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\begin{frame}
+\frametitle{Relación con otros protocolos}
+
+\begin{itemize}
+\item Protocolo portador para descripciones SDP
+\item Protocolo señalizador para RTP
+\item Funcionalidad parcialmente similar a H.323
+\item Hasta cierto punto equivalente a SS7, pero para VoIP
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 \frametitle{Problemas con los NATs y firewalls}
 
@@ -272,19 +290,6 @@ Authorization: Digest username="20100",realm="192.168.0.101",
 \end{frame}
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Ejemplo de una sesión}
-
-\begin{center}
-  \includegraphics[width=6.6cm]{figs/complete-sip-session.png}
-\end{center}
-
-En los puntos finales, hay un \emph{user agent}. Entre medias, tenemos un servidor que actúa de \emph{Registrar} y \emph{Proxy}.
-
-\end{frame}
 
 
 
