@@ -284,14 +284,14 @@ cosas = ['uno', 2, 3.0]
 
   \begin{footnotesize}
 \begin{verbatim}
-a = [0, 1, 2, 3, 4]
-print a      # [0, 1, 2, 3, 4]
-print a[1]   # 1 
-print a[0:2] # [0, 1]
-print a[3:]  # [3, 4]
-print a[-1]  # 4
-print a[:-1] # [0, 1, 2, 3]
-print a[:-2] # [0, 1, 2]
+lista = [0, 1, 2, 3, 4]
+print lista      # [0, 1, 2, 3, 4]
+print lista[1]   # 1 
+print lista[0:2] # [0, 1]
+print lista[3:]  # [3, 4]
+print lista[-1]  # 4
+print lista[:-1] # [0, 1, 2, 3]
+print lista[:-2] # [0, 1, 2]
 \end{verbatim}
   \end{footnotesize}
   \begin{center}
@@ -300,8 +300,8 @@ print a[:-2] # [0, 1, 2]
 
   \begin{footnotesize}
 \begin{verbatim}
-a = "niño"
-print a[-1]
+cadena = "niño"
+print cadena[-1]
 \end{verbatim}
   \end{footnotesize}
 
@@ -364,10 +364,10 @@ guillermo 9
 paises = {'de': 'Alemania', 'fr': 'Francia', 'es': 'España'}
 print paises; print paises["fr"]
 
-extension = {}
-extension['py'] = 'python'
-extension['txt'] = 'texto plano'
-extension['ps'] = 'PostScript'
+extensiones = {}
+extensiones['py'] = 'python'
+extensiones['txt'] = 'texto plano'
+extensiones['ps'] = 'PostScript'
 
 for pais in paises: # iteramos por el diccionario
    print pais, paises[pais]
@@ -529,17 +529,17 @@ for maquina in maquinas:
 
 \begin{footnotesize}
 \begin{verbatim}
-def sum(x, y):
+def sum(sumando1, sumando2):
     """Sums two integer/floats
 
     Returns integer/float."""
 
-    return x + y
+    return sumando1 + sumando2
 
 if __name__ == "__main__":
-    x = int(raw_input("Please enter an integer/float: "))
-    y = int(raw_input("Please enter another integer/float: "))
-    print sum(x, y) 
+    primero = int(raw_input("Please enter an integer/float: "))
+    segundo = int(raw_input("Please enter another integer/float: "))
+    print sum(primero, segundo) 
 
 \end{verbatim}
 \end{footnotesize}
@@ -622,9 +622,9 @@ Las variable declaradas fuera de una función son globales
   \begin{footnotesize}
 \begin{verbatim}
 #!/usr/bin/python
-c=5
-def f(x):
-    return x+c
+numero = 5
+def f(parametro):
+    return parametro + numero
 print f(3)    # 8
 \end{verbatim}
   \end{footnotesize}
@@ -638,11 +638,11 @@ Las variable declaradas dentro de una función son locales
   \begin{footnotesize}
 \begin{verbatim}
 #!/usr/bin/python
-def f(x):
-    c=5
-    return x+c
+def f(parametro):
+    numero = 5
+    return parametro + numero
 print f(3)
-print c    # ERROR: c es de ambito local
+print numero    # ERROR: numero es de ambito local
 \end{verbatim}
   \end{footnotesize}
 
@@ -662,10 +662,10 @@ pero no modificar
   \begin{footnotesize}
 \begin{verbatim}
 #!/usr/bin/python
-c=5
-def f(x):
-    c=c-1    #ERROR: no se puede modificar variable global
-    return x+c
+numero = 5
+def f(parametro):
+    numero = numero-1    #ERROR: no se puede modificar variable global
+    return paramentro + numero
     
 print f(3)
 \end{verbatim}
@@ -682,14 +682,14 @@ A menos que se use la sentencia \verb|global|
   \begin{footnotesize}
 \begin{verbatim}
 #!/usr/bin/python
-c=5
-def f(x):
-    global c   #permite modificar una variable global
-    c=c-1   
-    return x+c
+numero = 5
+def f(parametro):
+    global numero   #permite modificar una variable global
+    numero = numero-1   
+    return parametro + numero
     
 print f(3)    #7
-print c       #4
+print numero  #4
 \end{verbatim}
   \end{footnotesize}
 
@@ -709,13 +709,13 @@ print c       #4
  %06 
 \begin{verbatim}
 #!/usr/bin/python
-c=5
-def f(x):
-    c=4   #ahora c es variable local
-    return x+c
+numero = 5
+def f(parametro):
+    numero = 4   # ahora numero es variable local
+    return parametro + numero
     
 print f(3)   # 7
-print c      # 5
+print numero # 5
 
 \end{verbatim}
   \end{footnotesize}
@@ -783,12 +783,12 @@ Sí puede comprobarse la existencia con el operador \verb|in|.
 
 \begin{footnotesize}
 \begin{verbatim}
->>> t = ("a", "b", "mpilgrim", "z", "example") 
->>> t[0]                                       
+>>> tupla = ("a", "b", "mpilgrim", "z", "example") 
+>>> tupla[0]                                       
 'a'
->>> 'a' in t
+>>> 'a' in tupla
 1
->>> t[0] =  "b"
+>>> tupla[0] =  "b"
 Traceback (most recent call last):
   File "<stdin>", line 1, in ?
 TypeError: object doesn't support item assignment
@@ -809,9 +809,9 @@ Utilidad de las tuplas:
 \item Se usan en el formateo de cadenas
 \end{itemize} 
 
-\verb|tuple(li)| devuelve una tupla con los elementos de la lista \verb|li|
+\verb|tuple(lista)| devuelve una tupla con los elementos de la lista \verb|lista|
 
-\verb|list(t)| devuelve una lista con los elementos de la tupla \verb|t|
+\verb|list(tupla)| devuelve una lista con los elementos de la tupla \verb|tupla|
 
 \end{frame} 
 
@@ -896,9 +896,9 @@ asignado un valor.
 \begin{footnotesize}
 \begin{verbatim}
 #!/usr/bin/python
-sum_elementos= 3 + 4 + 17
-media=suma_elementos / 3    # deletreamos mal la variable
-print media;   # y el compilador nos avisa con un error
+sum_elementos = 3 + 4 + 17
+media = suma_elementos / 3    # deletreamos mal la variable
+print media   # y el compilador nos avisa con un error
 \end{verbatim}
 \end{footnotesize}
 adi
@@ -932,15 +932,15 @@ en la \emph{python library reference}
 \begin{verbatim}
 #!/usr/bin/python
 
-a = "más vale pájaro en mano"
-print a.split()
-print a.upper()
+cadena = "más vale pájaro en mano"
+print cadena.split()
+print cadena.upper()
 
-b = "que,cocodrilo,en,tobillo"
-print b.split(',')
+otra_cadena = "que,cocodrilo,en,tobillo"
+print otra_cadena.split(',')
 
-c = ['rojo', 'amarillo', 'verde']
-print c.join()
+lista = ['rojo', 'amarillo', 'verde']
+print lista.join()
 
 \end{verbatim}
   \end{footnotesize}
@@ -1008,13 +1008,13 @@ print c.join()
 \begin{footnotesize}
 \begin{verbatim}
 #!/usr/bin/python
-x = int(raw_input("Please enter an integer: "))
-if x < 0:
-     x = 0
+entero = int(raw_input("Please enter an integer: "))
+if entero < 0:
+     entero = 0
      print 'Negative changed to zero'
-elif x == 0:
+elif entero == 0:
      print 'Zero'
-elif x == 1:
+elif entero == 1:
      print 'Single'
 else:
      print 'More'
@@ -1048,13 +1048,13 @@ No existe \verb|switch/case|
 
 \begin{footnotesize}
 \begin{verbatim}
->>> li
+>>> lista
 ['a', 'b', 'mpilgrim', 'z', 'example']
->>> li.append("new")               
->>> li
+>>> lista.append("new")               
+>>> lista
 ['a', 'b', 'mpilgrim', 'z', 'example', 'new']
->>> li.insert(2, "new")           
->>> li
+>>> lista.insert(2, "new")           
+>>> lista
 ['a', 'b', 'new', 'mpilgrim', 'z', 'example', 'new']
 \end{verbatim}
 \end{footnotesize}
@@ -1077,17 +1077,17 @@ No existe \verb|switch/case|
 
 \begin{footnotesize}
 \begin{verbatim}
->>> li
+>>> lista
 ['a', 'b', 'new', 'mpilgrim', 'z', 'example', 'new']
->>> li.index("example") 
+>>> lista.index("example") 
 5
->>> li.index("new")     
+>>> lista.index("new")     
 2
->>> li.index("c")       
+>>> lista.index("c")       
 Traceback (innermost last):
   File "<interactive input>", line 1, in ?
 ValueError: list.index(x): x not in list
->>> "c" in li           
+>>> "c" in lista           
 0
 \end{verbatim}
 \end{footnotesize}
