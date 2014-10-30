@@ -1,0 +1,551 @@
+%
+% $Id: $
+%
+%
+% Compilar a .pdf con LaTeX (pdflatex)
+% Es necesario instalar Beamer (paquete latex-beamer en Debian)
+%
+
+%
+% Gráficos:
+% Los gráficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
+% Los EPS deben convertirse a PDF (usar epstopdf)
+%
+
+\documentclass{beamer}
+\usetheme{GSyC}
+\usepackage[latin1]{inputenc}
+\usepackage{graphics}
+\usepackage{amssymb} % Simbolos matematicos
+
+%\definecolor{libresoftgreen}{RGB}{162,190,43}
+%\definecolor{libresoftblue}{RGB}{0,98,143}
+
+%\setbeamercolor{titlelike}{bg=libresoftgreen}
+
+%% Metadatos del PDF.
+\hypersetup{
+  pdftitle={Teoría Tema 5 - Real Time Protocol},
+  pdfauthor={Gregorio Robles},
+  pdfcreator={GSyC, Universidad Rey Juan Carlos},
+  pdfproducer=PDFLaTeX,
+  pdfsubject={Teoría Tema 5 - Real Time Protocol},
+}
+%%
+
+\begin{document}
+
+\title{Teoría Tema 5 - Real-Time Transport Protocol}
+\subtitle{Protocolos para la Transmisión de Audio y Vídeo en Internet}
+\institute{\{jgb,grex\}@gsyc.urjc.es \\
+GSyC, Universidad Rey Juan Carlos}
+\author{Jesús M. González Barahona, Gregorio Robles}
+\date[Nov 2014]{5 de noviembre de 2014}
+
+\frame{
+\maketitle
+}
+
+
+% Si el titulo o el autor se quieren acortar para los pies de página
+% se pueden redefinir aquí:
+%\title{Titulo corto}
+%\author{Autores abreviado}
+
+
+%% LICENCIA DE REDISTRIBUCION DE LAS TRANSPAS
+\frame{
+~
+\vspace{4cm}
+
+\begin{flushright}
+{\tiny
+(cc) 2008-14 Jesús M. González Barahona y Gregorio Robles \\
+
+  Some rights reserved. This work licensed under Creative Commons \\
+  Attribution-ShareAlike License. To view a copy of full license, see \\
+\ \\
+  http://creativecommons.org/licenses/by-sa/3.0/ or write to \\
+  Creative Commons, 559 Nathan Abbott Way, Stanford, \\
+  California 94305, USA.
+}
+\end{flushright}
+}
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Real-time Transport Procotol}
+
+\begin{frame}
+\frametitle{RTP}
+  
+
+{\bf RTP} (\textbf{R}eal-time \textbf{T}ransport \textbf{P}rotocol) es el
+protocolo básico de transporte de tráfico multimedia en
+Internet.
+
+\begin{itemize}
+\item Se encapsula sobre UDP (TCP no sirve para aplicaciones de tiempo
+  real).
+\item Usa puertos de usuario para cada medio que se transfiere.
+\item Se encarga de enviar tramas de aplicaciones de tiempo
+  real, sin añadir fiabilidad ni ningún tipo de QoS. 
+\item Puede enviar tramas generadas por cualquier algoritmo de
+  codificación: H261, MPEG-1, MPEG-2\ldots
+\item Puede usarse con direcciones de destino \emph{unicast} o \emph{multicast}.
+\end{itemize}
+\end{frame}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\begin{itemize}
+\item Identifica los orígenes del tráfico, lo que permite
+  reencapsular agrupando tráficos a mitad de camino.
+\item Incorpora marcas de tiempo para cada medio:
+  \begin{itemize}
+  \item para sincronización intra-flujo (eliminar jitter).
+  \item para sincronización inter-medios (coincidencia audio/vídeo).
+  \end{itemize}
+\item Incluye números de secuencia para detectar pérdidas
+  dentro de un flujo.
+\end{itemize}
+
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Entidades en una transmisión multimedia}
+
+\begin{itemize}
+\item {\bf SSRC} (\emph{Synchronization Source}): Fuente de
+  sincronización, identifica de manera única dentro de una sesión RTP
+  la fuente que emite. Los SSRC se eligen al azar, cuidando que no se
+  repitan.
+  
+\item {\bf Sistema final}: Aplicaciones que emiten/consumen
+  paquetes RTP.
+
+\item Entre los emisores y los receptores puede haber 2 tipos de nodos:
+
+  \begin{small}
+  \begin{itemize}
+  \item {\bf Mezclador}: Recibe varios paquetes RTP, los combina y
+    envía otro nuevo con un nuevo SSRC (del mezclador), informando de
+    los SSRCs originales como {\bf CSRCs} (\emph{Contributing SRC}),
+    fuentes contributivas. Ejemplo: varios flujos de audio se
+    sincronizan, combinan y se envían como único flujo
+  \item {\bf Traductor}: Hace reenvío de paquetes tras modificarlos.
+    Ejemplo: conversión de codificación de vídeo, o un filtro en un
+    cortafuegos
+  \end{itemize}
+  \end{small}
+\item {\bf Monitor}: Aplicación que recibe paquetes de RT{\bf C}P.
+\end{itemize}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Formato de paquete RTP}
+
+\begin{center}
+  \includegraphics[width=11.5cm]{figs/rtphdr}
+\end{center}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\begin{itemize}
+\item {\bf Versión (V)}: 2 para RTP.
+\item {\bf Relleno (P)}: Si el bit es 1, el paquete contiene 1 ó
+  más bytes de relleno al final, que no son parte de la carga útil
+  (\emph{payload})
+\item {\bf Extensión (X)}: Si el bit es 1, a continuación de la
+  cabecera fija y de los CSRCs (si los hay) viene una extensión de
+  (definida por {\bf perfiles de RTP}).
+\item {\bf Número de CSRCs}: Número de identificadores
+  CSRC que vienen tras la cabecera fija (puede ser 0).
+\item {\bf Marca (M)}: La interpretación de M se define en un perfil de RTP.
+  Puede utilizarse, por ejemplo para marcar que un determinado paquete
+  de RTP es un principio/fin de cuadro.
+\item {\bf Tipo de carga útil}: Indica el algoritmo de codificación de
+  audio/vídeo al que pertenecen los datos.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{itemize}
+\item {\bf Número de secuencia}: Inicialmente es un valor al azar, que
+  se incrementa en uno por cada nuevo paquete RTP. El receptor puede
+  utilizarlo para detectar pérdidas y reordenar.
+\item {\bf Marca de tiempo}: Instante en el que se produjo el primer
+  byte de la carga del paquete RTP. Debe obtenerse de un reloj monótono
+  creciente y sin deriva para permitir las sincronizaciones.
+\item {\bf Identificador de SSRC}: Identifica el flujo al que
+  pertenece el paquete.
+\item {\bf Identificadores de CSRC}: Cada
+  elemento (de 0 a 15) identifica un contribuyente de la carga del
+  paquete, insertado por un mezclador al componer flujos.
+\end{itemize}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Reproducción adaptativa con RTP}
+\begin{itemize}
+\item Se vigila el tiempo medio entre llegadas, que debe variar de
+  manera suave, salvo pérdidas.
+  \begin{itemize}
+  \item Para poder eliminar el \emph{jitter} el tamaño del \emph{buffer} que
+    alimenta la aplicación destino varía de manera directamente
+    proporcional al tiempo medio.
+  \end{itemize}
+\item Además las aplicaciones intercambian periódicamente las
+  estadísticas observadas para cada origen, usando RTCP, y los
+  emisores pueden utilizar esta información para ajustar su tasa de
+  envío reduciendo la calidad.
+\end{itemize}
+\end{frame}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%  \frametitle{Payload}
+
+%  \begin{itemize}
+%  \item Formatos de CODEC antes sólo disponibles en hardware: MPEG,
+%    H.261, codificación de voz de CCITT/ITU
+%  \item Formatos para transporte de audio con codificación redundante
+%    como Freephone de INRIA , RAT de UCL
+%  \end{itemize}
+%\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Real-time Transport Control Procotol}
+
+\begin{frame}
+\frametitle{RTCP}
+{\bf RTCP} (\textbf{R}eal \textbf{T}ime \textbf{C}ontrol
+    \textbf{P}rotocol): Protocolo que proporciona información de
+    control sobre la calidad de la transmisión. 
+
+\begin{itemize}
+\item Transmite paquetes de control periódicos, de manera asociada a
+  cada flujo RTP.
+\item Incluye detalles sobre todos los participantes y estadísticas de
+  pérdidas, que permiten realizar cierto control de flujo y congestión.
+\item Permite ver si las congestiones son locales o generalizadas.
+\item Permite hacer codificación adaptativa en función de la calidad
+  de la transmisión.
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+
+\begin{itemize}
+\item Permite relacionar el reloj del emisor y las marcas de tiempo:
+  necesario para sincronización inter-flujos, pues las marcas de
+  tiempo de diferentes flujos (de distintos SSRCs) no son comparables
+  por ser relativas.
+\item Establece un nombre canónico ({\bf CNAME}) para cada participante
+  (típicamente: \verb|user@host|).
+\item Se encapsula sobre UDP, empleado el puerto siguiente al usado
+  por RTP.
+\item Se utiliza \emph{unicast} o \emph{multicast}, de manera análoga a como lo haga
+  el flujo de datos con RTP.
+\item Varios paquetes RTCP pueden ser concatenados por
+  mezcladores/traductores. 
+\item El tráfico de RTCP no debe exceder del 5\% del ancho de banda de
+  la sesión.
+\end{itemize}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Tipos de Paquetes RTCP}
+
+\begin{itemize}
+\item {\bf SR (\emph{Sender Report})}: Informe de emisor, con
+  estadísticas de transmisión (y de recepción de otros emisores
+  activos). Deben constituir al menos el 25\% del tráfico RTCP.
+\item {\bf RR (\emph{Receiver Report})}: Informe de receptor, con
+  estadísticas de recepción de los emisores.
+\item {\bf SDES (\emph{Source Description})}: Descripción de una
+  fuente, incluyendo CNAMEs.
+\item {\bf BYE}: Salida explícita de la sesión.
+\item {\bf APP}: Para extensiones para aplicaciones específicas.
+\end{itemize}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Formato de paquetes RTCP}
+
+%Paquetes SR:
+%\begin{small}
+%\begin{itemize}
+%\item Tipo de paquete: SR
+%\item SSRC + informe de emisión
+%\item SSRC + informe de recepción (otro emisor)
+%\item \ldots
+%\item SSRC + informe de recepción (último emisor, máx. 31)
+%\end{itemize}
+%\end{small}
+
+%Paquetes RR:
+%\begin{small}
+%\begin{itemize}
+%\item Tipo de paquete: RR.
+%\item SSRC + informe de recepción del primer emisor.
+%\item \ldots
+%\item SSRC + informe de recepción (último emisor, máx. 31).
+%\end{itemize}
+%\end{small}
+
+
+%\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Tipos de Paquetes RTCP: SR}
+
+
+Los informes de emisión incluyen:
+\begin{itemize}
+\item Marca de tiempo de NTP.
+\item Marca de tiempo de RTP correspondiente.
+\item Número de paquetes enviados.
+\item Número de bytes enviados.
+\end{itemize}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Tipos de Paquetes RTCP: RR}
+
+Los informes de recepción incluyen:
+\begin{itemize}
+\item Fracción de paquetes perdidos desde el último RR (SR) enviado.
+\item Número acumulado de paquetes perdidos.
+\item Número de secuencia mayor recibido.
+\item Información sobre el \emph{jitter}.
+\item Cuándo se recibió el último SR de esta fuente.
+\end{itemize}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Tipos de Paquetes RTCP: SDES}
+
+Estructura de un paquete SDES:
+\begin{small}
+\begin{itemize}
+\item SSRC.
+\item CNAME.
+\item Opcionalmente: NAME, EMAIL, PHONE, LOC, TOOL\ldots.
+\end{itemize}
+\end{small}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Real-time Transport Streaming Protocol}
+
+\begin{frame}
+\frametitle{RTSP}
+
+{\bf RTSP} (\textbf{R}eal \textbf{T}ime \textbf{S}treaming
+    \textbf{P}rotocol): Protocolo que permite realizar un control
+    remoto de sesión de transmisión multimedia.
+
+Permite:
+\begin{itemize}
+\item recuperar un determinado medio de un servidor.
+\item invitar a un servidor de medios a una multiconferencia.
+\item grabar una multiconferencia.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Principios de diseño}
+
+\begin{itemize}
+\item Protocolo basado en texto.
+\item Independiente del protocolo de transporte.
+\item Soporta cualquier descripción de la sesión (SDP, XML\ldots).
+\item Permite utilizar \emph{unicast} y \emph{multicast}.
+\item El diseño \emph{recuerda} a HTTP.
+\item Emplea URLs:
+\begin{small}
+\begin{verbatim}
+rtsp://media.example.com:554/conf1
+rtsp://media.example.com:554/conf1/audio1
+\end{verbatim}
+\end{small}
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Mensajes de RTSP}
+
+\begin{itemize}
+\item Solicitud:
+  \begin{small}
+\begin{verbatim}
+PLAY rtsp://video.example.com/conf1/video1 RTSP/1.0
+CSeq: 2
+Session: 123456
+Range: smpte=0:10:00-
+\end{verbatim}
+  \end{small}
+
+\item Respuesta:
+  \begin{small}
+\begin{verbatim}
+RTSP/1.0 200 OK
+CSeq: 2
+Session: 1234567
+Range: smpte=0:10:00-0:20:00
+RTP-Info: url=rtsp://video.example.com/conf1/video1;
+          seq=123123123;rtptime=456456456
+\end{verbatim}
+  \end{small}
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Métodos RTSP}
+
+Métodos principales:
+\begin{itemize}
+\item {\bf SETUP}: El servidor asigna recursos y establece una sesión
+  RTSP.
+\item {\bf PLAY}: Empieza la transmisión de datos.
+\item {\bf PAUSE}: Detiene temporalmente la transmisión.
+\item {\bf TEARDOWN}: Libera los recursos y termina la sesión RTSP.
+\end{itemize}
+Métodos adicionales:
+\begin{itemize}
+\item OPTIONS, ANNOUNCE, DESCRIBE, RECORD, REDIRECT,\\
+SET\_PARAMETER.
+\end{itemize}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Modos RTSP}
+
+Tres modos de operación con relación a las comunicaciones:
+\begin{itemize}
+\item Conexiones TCP persistentes para varias solicitudes/respuesta.
+\item Una conexión TCP para cada solicitud/respuesta.
+\item Sin conexión, sobre UDP (en la url: \verb|rtspu://...|).
+\end{itemize}
+
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Ejemplo}
+
+\begin{center}
+  \includegraphics[height=6.5cm]{figs/rtsp}
+\end{center}
+
+
+\end{frame}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Referencias}
+
+\begin{itemize}
+\item Fred Halsall, \textsl{Multimedia Communications. Applications,
+    Networks, Protocols and Standards}. Addison-Wesley, 2001. 
+\item Columbia University IRT (Internet Real Time) Lab:\\
+  \url{http://www.cs.columbia.edu/~hgs/research/IRT/}
+\item RFC 3550, RTP: A Transport Protocol for Real-Time Applications:\\
+  \url{http://www.faqs.org/rfcs/rfc3550.html}
+\item RFC 2326, RTSP: Real Time Streaming Protocol:\\
+  \url{http://www.faqs.org/rfcs/rfc2326.html}
+
+\end{itemize}
+
+
+\end{frame}
+
+
+
+\frame{
+\maketitle
+}
+
+\end{document}
