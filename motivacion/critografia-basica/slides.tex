@@ -1,0 +1,338 @@
+%
+% $Id: $
+%
+%
+% Compilar a .pdf con LaTeX (pdflatex)
+% Es necesario instalar Beamer (paquete latex-beamer en Debian)
+%
+
+%
+% Gráficos:
+% Los gráficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
+% Los EPS deben convertirse a PDF (usar epstopdf)
+%
+
+\documentclass{beamer}
+\usetheme{GSyC}
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{format/libresoft-bg.png}}
+%\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphics}
+\usepackage{amssymb} % Simbolos matematicos
+
+\ProcessOptions
+
+%% Metadatos del PDF.
+\hypersetup{
+  pdftitle={Protocolos para la Transmisión de Audio y Vídeo por Internet},
+  pdfauthor={Gregorio Robles, Jesús M. González Barahona},
+  pdfcreator={GSyC, Universidad Rey Juan Carlos},
+  pdfproducer=PDFLaTeX,
+  pdfsubject={Protocolos para la Transmisión de Audio y Vídeo por Internet},
+}
+%%
+
+\begin{document}
+
+\title{Conceptos básicos de Criptografía}
+\subtitle{Protocolos para la Transmisión de Audio y Vídeo en Internet}
+\institute{\{grex,jgb\}@gsyc.urjc.es \\
+GSyC, Universidad Rey Juan Carlos}
+\author[Gregorio Robles, Jesús M. González Barahona]{Gregorio Robles, Jesús M. González Barahona}
+\date[Nov 2014]{26 de noviembre de 2014}
+
+
+\frame{
+\maketitle
+}
+
+
+% Si el titulo o el autor se quieren acortar para los pies de página
+% se pueden redefinir aquí:
+%\title{Titulo corto}
+%\author{Autores abreviado}
+
+
+%% LICENCIA DE REDISTRIBUCION DE LAS TRANSPAS
+\frame{
+~
+\vspace{4cm}
+
+\begin{flushright}
+\includegraphics[width=2.2cm]{figs/by-sa}
+
+{\tiny
+(cc) 2014 Gregorio Robles, Jesús M. González Barahona \\
+  Some rights reserved. This work licensed under Creative Commons \\
+  Attribution-ShareAlike License. To view a copy of full license, see \\
+\ \\
+  http://creativecommons.org/licenses/by-sa/3.0/ or write to \\
+  Creative Commons, 559 Nathan Abbott Way, Stanford, \\
+  California 94305, USA. \\
+\ \\
+\ \\
+  Part of the material is based on Stephen A. Weis cryptocourse \\
+  at Google. Point to http://saweis.net/crypto.html for further \\
+  information, including the videos of the course. \\
+\ \\
+  Some of the images that are shown have been taken from the book \\
+  Internet Multimedia Communications Using SIP\\
+  by Rogelio Martínez Perea (available in the Biblioteca). \\
+  These images are (c)2008 Rogelio Martínez Perea. \\
+  Published by Elsevier, Inc. All rights reserved. \\
+
+
+}
+\end{flushright}
+}
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Definiciones}
+
+\begin{itemize}
+\item Kryptósgráfo, o el arte de la ``escritura escondida''. Cómo esconder contenidos o la existencia de mensajes a un adversario
+
+\item De manera informal, el cifrado muestra el contenido de un mensaje de manera ininteligible a los que no posean cierta información secreta.
+
+\item Esteganografía, o ``escritura encubierta''. Técnica utilizada para ocultar la existencia de un mensaje -- ¡incluso uno a simple vista!
+
+\end{itemize}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Esteganografía - Imagen visible}
+
+\begin{center}
+  \includegraphics[width=10cm]{figs/arctic_hare.png}
+\end{center}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Esteganografía - Imagen a ocultar}
+
+\begin{center}
+  \includegraphics[width=10cm]{figs/F15.png}
+\end{center}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Esteganografía - Imagen visible resultante}
+
+\begin{center}
+  \includegraphics[width=10cm]{figs/stego4.png}
+\end{center}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Esteganografía - Imagen ocultada resultante}
+
+\begin{center}
+  \includegraphics[width=10cm]{figs/extract4.png}
+\end{center}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+
+\begin{frame}
+\frametitle{One-time pad}
+
+\begin{itemize}
+\item Se genera una clave aleatoria de tamaño tan grande como tu mensaje
+y utilizas luego un OR exclusivo (XOR) entre la clave y el mensaje
+\item Se trata de un método seguro e infalible (además, probado matemáticamente)
+\item Pero...
+ \begin{itemize}
+  \item Para transmitir un secreto grande, necesitas transmitir primero un secreto grande
+  \item La clave es tan grande como el mensaje
+  \item Sólo se puede utilizar una vez
+  \item Hay que tener una clave por mensaje y por receptor
+ \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Cifrado simétrico}
+
+\begin{center}
+  \includegraphics[width=11cm]{figs/symmetric.png}
+\end{center}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Distribución de claves}
+
+\begin{itemize}
+ \item ¿Cómo acuerdan Alice y Bob en una clave compartida?
+ \item ¿Qué pasa si una de las dos partes se ve comprometida?
+ \item ¿Qué pasa si Carlo quiere hablar con Alice y Bob?
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Cifrado asimétrico}
+
+\begin{center}
+  \includegraphics[width=11cm]{figs/asymmetric.png}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Cifrado de clave pública (y II)}
+
+Bonitas propiedades:
+\begin{itemize}
+  \item Una clave por persona
+  \item Se puede comunicar con un desconocido sin acordar una clave.
+\end{itemize}
+
+Pero también tiene sus problemas (o retos):
+\begin{itemize}
+  \item ¿Esto es posible?
+  \item ¿Cómo obtienes la llave pública de Alice?
+  \item ¿Puedes fiarte del texto cifrado?
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Autenticación}
+
+\begin{itemize}
+ \item ¿Cómo sabemos que Alice es Alice?
+ \item ¿Cómo sabemos que el mensaje fue originado por Alice?
+ \item ¿Cómo sabemos que el mensaje de Alice no fue alterado durante el viaje?
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Autenticación (II)}
+
+\begin{itemize}
+  \item Resumen de mensaje comprime la entrada en un string de longitud fija
+  \item No necesita claves
+  \item Es difícil encontrar la entrada a partir del hash
+  \item Resistencia contra colisiones: es difícil encontrar dos entradas que generen el mismo hash.
+%   \item Fixed-length public signature schemes can sign digests
+%instead of the actual message.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Firma}
+
+\begin{center}
+  \includegraphics[width=12cm]{figs/signing.png}
+\end{center}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{¿Cómo distribuimos las claves?}
+
+¿Cómo sabemos que una llave (pública, claro) es de alguien?
+
+\begin{itemize}
+  \item Certificados: Una firma sobre una clave pública u otro certificado
+  \item PKI: Un grafo de relaciones entre claves.
+  \begin{itemize}
+    \item Autoridades de certificación
+    \item Red (social) de confianza
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Combinando cifrado simétrico y asimétrico}
+
+\begin{center}
+  \includegraphics[width=9.5cm]{figs/session.png}
+\end{center}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Registro con SIP seguro}
+
+\begin{center}
+  \includegraphics[width=9cm]{figs/sip-register.png}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\frame{
+\maketitle
+}
+
+\end{document}
