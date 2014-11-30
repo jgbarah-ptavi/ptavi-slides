@@ -1,0 +1,310 @@
+%
+% $Id: $
+%
+%
+% Compilar a .pdf con LaTeX (pdflatex)
+% Es necesario instalar Beamer (paquete latex-beamer en Debian)
+%
+
+%
+% Gráficos:
+% Los gráficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
+% Los EPS deben convertirse a PDF (usar epstopdf)
+%
+
+\documentclass{beamer}
+\usetheme{GSyC}
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{format/gsyc-bg.png}}
+%\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphics}
+\usepackage{amssymb} % Simbolos matematicos
+
+%\definecolor{libresoftgreen}{RGB}{162,190,43}
+%\definecolor{libresoftblue}{RGB}{0,98,143}
+
+%\setbeamercolor{titlelike}{bg=libresoftgreen}
+
+%% Metadatos del PDF.
+\hypersetup{
+  pdftitle={PTAVI :: Presentación Práctica Final},
+  pdfauthor={Gregorio Robles, Jesús M. González Barahona},
+  pdfcreator={GSyC, Universidad Rey Juan Carlos},
+  pdfproducer=PDFLaTeX,
+  pdfsubject={PTAVI :: Presentación Práctica Final},
+}
+%%
+
+\begin{document}
+
+\title{Presentación de la Práctica Final}
+\subtitle{Protocolos para la Transimisión de Audio y Vídeo por Internet}
+\institute{grex@gsyc.urjc.es \\
+GSyC, Universidad Rey Juan Carlos}
+\author{Gregorio Robles}
+\date{30 de noviembre de 2014}
+
+\frame{
+\maketitle
+}
+
+
+% Si el titulo o el autor se quieren acortar para los pies de página
+% se pueden redefinir aquí:
+%\title{Titulo corto}
+%\author{Autores abreviado}
+
+
+%% LICENCIA DE REDISTRIBUCION DE LAS TRANSPAS
+\frame{
+~
+\vspace{4cm}
+
+\begin{flushright}
+{\tiny
+(cc) 2008-14 Gregorio Robles, Jesús M. González Barahona \\
+  Some rights reserved. This work licensed under Creative Commons \\
+  Attribution-ShareAlike License. To view a copy of full license, see \\
+\ \\
+  http://creativecommons.org/licenses/by-sa/3.0/ or write to \\
+  Creative Commons, 559 Nathan Abbott Way, Stanford, \\
+  California 94305, USA. \\
+
+}
+\end{flushright}
+}
+
+\section{Recordatorio de Evaluación de PTAVI}
+
+\begin{frame}
+\frametitle{Evaluación}
+
+\begin{itemize}
+\item Teoría: De 0 a 5 puntos (mínimo 2 puntos)
+\item Prácticas: De 0 a 5,5 puntos (mínimo: parte básica práctica final)
+\begin{itemize}
+  \item Entrega práctica final parte básica: 0 puntos
+  \item Requisitos avanzados (y calidad) práctica final: hasta 2 puntos
+\end{itemize}
+\item Bonus de equipo: Hasta 0,5 puntos adicionales
+
+\item Importante: Al sumar todas las notas, se ha de conseguir un 5 o más.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Práctica final}
+
+\begin{itemize}
+  \item Individual
+  \item De obligatorio cumplimiento (i.e., sin las prácticas aprobadas, no se aprueba la asignatura)
+  \item Realizadas en Python
+  \item Temática: servicio SIP
+  \item Fecha de entrega: por decidir
+%  \item Habrá clases específicas de apoyo a la práctica final en sesiones de prácticas
+  \item Habrá tutorías en el laboratorio
+  \item Hay instrucciones (muy) detalladas en el guión
+\end{itemize}
+
+\end{frame}
+
+%%
+
+\section{Práctica Final}
+
+\begin{frame}
+\frametitle{Objetivo Principal}
+
+\begin{center}
+  \begin{huge}
+    Implementar un servicio SIP sencillo, pero completo.
+  \end{huge}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Requisitos mínimos}
+
+\begin{itemize}
+\item SIP User Agent (cliente y servidor). Pueden ejecutarse por separado.
+\begin{itemize}
+  \item Descripción de sesión con SDP
+\end{itemize}
+\item Servidor Registrar y Proxy SIP (un único servidor real)
+\begin{itemize}
+  \item Base de datos de usuarios registrados en fichero de texto
+  \item \emph{time out}
+\end{itemize}
+\item Envío RTP (con mp32rtp)
+\item En todos los clientes y servidores:
+\begin{itemize}
+  \item Configuración por defecto almacenada en un archivo XML.
+  \item Mensajes de log en fichero de texto.
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Requisitos}
+
+\begin{itemize}
+  \item El protocolo SIP se debe seguir estrictamente
+  \item Los nombres de los programas vienen especificados
+  \item Los parámetros de los programas han de ser los que se indican
+  \item El formato de los logs está definido
+  \item Algunos mensajes de error vienen definidos
+  \item Para el resto de cosas, incluida la implementación, se puede hacer 
+como se desee
+\end{itemize}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{SIP: Session Initiation Protocol}
+
+\begin{itemize}
+  \item Métodos: REGISTER, ACK, INVITE, BYE, INFO
+  \item Códigos de respuesta: 100, 180, 200, 404, 405
+  \item Detalles en el documento con instrucciones
+\end{itemize}
+
+
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Servidor Registrar}
+
+\begin{itemize}
+  \item Configuración almacenada en XML
+  \begin{itemize}
+    \item puerto donde estará el servidor escuchando, nombre del servidor, ruta del fichero de \emph{log}, tiempo de \emph{time out} de registro (en segundos), ruta del binario mp32rtp (ver más abajo) y ruta de la canción MP3 a enviar (ver más abajo).
+   \end{itemize}
+   \item Diccionario y fichero (consistencia). Patrón \emph{singleton}
+   \item No hace falta leer del fichero de base de datos (al menos en la parte
+básica)
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Mensajes de log}
+
+Ejemplo:
+
+\begin{footnotesize}
+\begin{verbatim}
+20090218152045 Starting...
+20090218153012 REGISTER grex@gsyc.urjc.es sent to server localhost 9001
+20090218153017 200 OK 12345678 received from server localhost 9001
+20090218153036 INVITE espinete@sesamo.org received from grex@gsyc.urjc.es
+\end{verbatim}
+\end{footnotesize}
+\end{frame} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{SDP: Session Description Protocol}
+
+Ejemplo de cuerpo de mensaje con SDP (ojo, esto sólo es el cuerpo):
+
+\begin{verbatim}
+v=0
+o=grex@direccion.dom 193.147.71.99
+s=misesion
+t=0 
+m=audio 12345 RTP
+\end{verbatim}
+
+\end{frame} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Envío RTP}
+
+\begin{itemize}
+  \item mp32rtp
+  \item Hace falta descargarlo, y darle permisos de ejecución
+  \item Ver README para su ejecución: 
+
+\begin{verbatim}
+./mp32rtp -i direccionIP -p puerto < cancion.mp3
+\end{verbatim}
+  \item Instrucciones detalladas en el documento de la práctica final
+  \item No hace falta escuchar la cancións
+\end{itemize}
+
+\end{frame} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Ejemplo de una sesión SIP}
+
+\begin{center}
+  \includegraphics[width=9cm]{figs/complete-sip-session.png}
+\end{center}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Equipos}
+
+\begin{itemize}
+  \item Legibilidad del código y seguimiento de la guía de estilo de Python
+  \item Comprobación de mensajes SIP y archivos de \emph{log} para que sigan las instrucciones
+  \item Servidores y clientes de los miembros se comunican entre sí, salvo que
+alguien haya realizado un requisito avanzado que lo impida
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Requisitos Avanzados}
+
+\begin{itemize}
+  \item Detalladas al final del documento
+  \item Se construyen encima de la parte básica (no tocan funcionalidad de la parte básica)
+  \item Tienen una puntuación máxima asignada
+  \item Se entregan indicando que se han implementado en un fichero de texto
+  \item Se pueden proponer otras
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\frame{
+\maketitle
+}
+
+\end{document}
