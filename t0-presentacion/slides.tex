@@ -25,7 +25,7 @@
 %% Metadatos del PDF.
 \hypersetup{
   pdftitle={Presentación Protocolos para la Transmisión de Audio y Vídeo por Internet},
-  pdfauthor={Gregorio Robles, Jesús M. González Barahona},
+  pdfauthor={Gregorio Robles},
   pdfcreator={GSyC, Universidad Rey Juan Carlos},
   pdfproducer=PDFLaTeX,
   pdfsubject={Presentación Protocolos para la Transmisión de Audio y Vídeo por Internet},
@@ -38,8 +38,8 @@
 \subtitle{Protocolos para la Transmisión de Audio y Vídeo en Internet}
 \institute{\{grex,jgb\}@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
-\author[Gregorio Robles, Jesús M. González Barahona]{Gregorio Robles, Jesús M. González Barahona}
-\date[Sept 2014]{8 de septiembre de 2014}
+\author[Gregorio Robles]{Gregorio Robles}
+\date[Sept 2015]{9 de septiembre de 2015}
 
 
 \frame{
@@ -62,14 +62,14 @@ GSyC, Universidad Rey Juan Carlos}
 \includegraphics[width=2.2cm]{figs/by-sa}
 
 {\tiny
-(cc) 2008-14 Gregorio Robles, Jesús M. González Barahona \\
+(cc) 2008-15 Gregorio Robles, Jesús M. González Barahona \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 \ \\
   http://creativecommons.org/licenses/by-sa/3.0/ or write to \\
   Creative Commons, 559 Nathan Abbott Way, Stanford, \\
   California 94305, USA. \\
-\ 
+\
 }
 \end{flushright}
 }
@@ -78,22 +78,22 @@ GSyC, Universidad Rey Juan Carlos}
 \section{Profesores, Calendario y Temario}
 
 \begin{frame}
-\frametitle{Profesores}
+\frametitle{Profesor}
 
 \begin{itemize}
-\item Gregorio Robles, Jesús M. González Barahona
+\item Gregorio Robles (a veces, Jesús M. González Barahona)
 \item Grupo de Sistemas y Comunicaciones
 \item Despacho 110 - 1ª planta del Departamental III (Fuenlabrada)
 \item Horario de tutoría
 \begin{itemize}
-  \item Lunes de 14:30 a 17:30 en las aulas de laboratorio
+  \item Lunes de 14:30 a 17:30 en las aulas del Laboratorios III
 \end{itemize}
-\item Mejor forma de contactar con nosotros:
+\item Mejor forma de contactar conmigo:
 \begin{itemize}
-  \item \{grex,jgb\} arroba gsyc.urjc.es
+  \item grex arroba gsyc.urjc.es
 \end{itemize}
 \item Canal Twitter de la asignatura: http://twitter.com/urjc\_ptavi
-\item Y luego está el Moodle de la asignatura
+\item Y luego está el Moodle y la página en GitHub de la asignatura
 \end{itemize}
 
 \end{frame}
@@ -101,15 +101,15 @@ GSyC, Universidad Rey Juan Carlos}
 
 %-----------------------    ---------------------------------
 \usebackgroundtemplate{\includegraphics[width=12.8cm]{figs/oldnew.jpg}}
-% 
+%
 
 \begin{frame}
-\frametitle{¿De qué va todo esto?}
+\frametitle{De qué va todo esto?}
 
 \vspace{3cm}
 
 \begin{center}
-\Huge El \emph{viejo} Internet ya no nos vale
+\Huge {\bf El \emph{viejo} Internet ya no vale}
 \end{center}
 
 \end{frame}
@@ -125,7 +125,7 @@ GSyC, Universidad Rey Juan Carlos}
 \vspace{-2.75cm}
 
 \begin{center}
-\Huge El estudiante es el centro del aprendizaje
+\Huge {\bf El estudiante es el centro del aprendizaje}
 \end{center}
 
 \end{frame}
@@ -141,7 +141,7 @@ GSyC, Universidad Rey Juan Carlos}
 \vspace{5.4cm}
 
 \begin{center}
-\Huge Aprender ha de ser divertido
+\Huge {\bf Aprender es divertido}
 \end{center}
 
 \end{frame}
@@ -153,12 +153,28 @@ GSyC, Universidad Rey Juan Carlos}
 % http://www.openweigh.com/assets/programmer-e898f9c9a43ecd208f1f1df347713e6e.jpg
 
 \begin{frame}
-\frametitle{Fundamentos filosofales de la asignatura (y III)}
+\frametitle{Fundamentos filosofales de la asignatura (III)}
 
 \vspace{2.7cm}
 
 \begin{center}
-\Huge La programación es el lenguaje de la tecnología
+\Huge {\color{green} {\bf La programación es el lenguaje de la tecnología }}
+\end{center}
+
+\end{frame}
+\usebackgroundtemplate{}
+
+%-----------------------    ---------------------------------
+\usebackgroundtemplate{\includegraphics[width=13cm]{figs/vietnam.jpg}}
+% http://media4.s-nbcnews.com/j/MSNBC/Components/Slideshows/_production/ss-100429-vietnam/ss-100429-vietnam-18.ss_full.jpg
+
+\begin{frame}
+\frametitle{Fundamentos filosofales de la asignatura (y IV)}
+
+\vspace{4.1cm}
+
+\begin{center}
+\Huge {\color{red} {\bf Vamos a aprender en un entorno lo más real posible}}
 \end{center}
 
 \end{frame}
@@ -176,7 +192,22 @@ GSyC, Universidad Rey Juan Carlos}
 \begin{center}
 \Large Primer Mandamiento: \\ Amarás Python por encima de (casi) todo.
 \end{center}
+\end{frame}
+\usebackgroundtemplate{}
 
+%-----------------------    ---------------------------------
+
+\begin{frame}
+\frametitle{Entorno de Desarrollo: GitHub}
+
+\begin{center}
+\includegraphics[width=5cm]{figs/baracktocat.jpg}
+% https://octodex.github.com/images/baracktocat.jpg
+\end{center}
+
+\begin{center}
+\Large Segundo Mandamiento: \\ GitHub será tu (humilde) morada.
+\end{center}
 
 \end{frame}
 \usebackgroundtemplate{}
@@ -188,12 +219,12 @@ GSyC, Universidad Rey Juan Carlos}
 \begin{itemize}
 \item Generalmente:
   \begin{itemize}
-    \item Lunes de 9:00 a 11:00: Laboratorios II; aula Linux 007
+    \item Lunes de 9:00 a 11:00: Laboratorios II; aula Linux 3209 Laboratorios III
     \item Miércoles de 9:00 a 11:00: Teoría en el aula 313 del Aulario III
   \end{itemize}
 \item Puede haber excepciones (se avisarán en el foro y en clase)
 \begin{itemize}
-  \item P.ej.: esta misma semana, o la semana que viene
+  \item P.ej.: la semana que viene
 \end{itemize}
 \end{itemize}
 
@@ -206,36 +237,36 @@ GSyC, Universidad Rey Juan Carlos}
 \begin{table}[htpb]
 \begin{center}
 \begin{tabular}[t]{l|l}
-\textcolor{yellow}{ 08.09: Presentación } &
-\textcolor{red}{ 10.09: Intro a Python } \\
-\textcolor{yellow}{ 15.09: Intro a Python }  &
-\textcolor{yellow}{ 17.09: Intro a GitHub } \\
-\textcolor{red}{ 22.09: Python y GitHub (*) } &
-\textcolor{blue}{ 24.09: Multimedia en Redes IP } \\
-\textcolor{red}{ 29.09: Python y GitHub } &
-\textcolor{blue}{ 01.10: SMIL y XML } \\
-\textcolor{red}{ 06.10: SMIL, XML y Python (*) } &
-\textcolor{blue}{ 08.10: SIP (*)} \\
-\textcolor{red}{ 13.10: SMIL, XML y Python } &
-\textcolor{blue}{ 15.10: SIP } \\
-\textcolor{red}{ 20.10: Sockets, UDP y Python (*) } &
-\textcolor{blue}{ 22.10: SDP (*)} \\
-\textcolor{red}{ 27.10: Sockets, UDP y Python } &
-\textcolor{blue}{ 29.10: RTSP } \\
-\textcolor{red}{ 03.11: Sesión SIP + RTP (*) } &
-\textcolor{blue}{ 05.11: RTP (*)} \\
-\textcolor{red}{ 10.11: Sesión SIP + RTP} &
-\textcolor{blue}{ 12.11: RTP } \\
-\textcolor{red}{ 17.11: Sesión SIP p2p (*) } &
-\textcolor{blue}{ 19.11: RTP (jitter) (*)} \\
-\textcolor{red}{ 24.11: Presentación PFinal } &
-\textcolor{blue}{ 26.11: WebRTC  } \\
-\textcolor{red}{ 01.12: Tutoría PFinal 1 } &
-\textcolor{blue}{ 03.12: WebRTC (*)} \\
-\textcolor{yellow}{ 08.12: Fiesta } &
-\textcolor{blue}{ 10.12: Repaso teoría } \\
-\textcolor{blue}{} & 
-\textcolor{yellow}{ 15.12: Examen (a las 9:00)} 
+\textcolor{green}{ 07.09: Inicio de curso } &
+\textcolor{blue}{ 09.09: Presentación } \\
+\textcolor{green}{ 14.09: Fiesta } &
+\textcolor{red}{ 16.09: Intro a Python } \\
+\textcolor{red}{ 21.09: Intro a Python }  &
+\textcolor{blue}{ 23.09: Multimedia en Redes IP } \\
+\textcolor{red}{ 28.09: Python y GitHub } &
+\textcolor{blue}{ 30.09: SMIL y XML } \\
+\textcolor{red}{ 05.10: Python y GitHub (*) } &
+\textcolor{red}{ 07.10: SMIL, XML y Python } \\
+\textcolor{green}{ 12.10: Fiesta } &
+\textcolor{blue}{ 14.10: SIP (*)} \\
+\textcolor{red}{ 19.10: SMIL, XML y Python (*) } &
+\textcolor{blue}{ 21.10: SIP } \\
+\textcolor{red}{ 26.10: Sockets, UDP y Python } &
+\textcolor{blue}{ 28.10: SIP/SDP (*) } \\
+\textcolor{red}{ 02.11: Sockets, UDP y Python (*) } &
+\textcolor{blue}{ 04.11: SDP } \\
+\textcolor{red}{ 09.11: Sesión SIP + RTP } &
+\textcolor{blue}{ 11.11: RTSP (*) } \\
+\textcolor{red}{ 16.11: Sesión SIP + RTP (*) } &
+\textcolor{blue}{ 18.11: RTP } \\
+\textcolor{red}{ 23.11: Sesión SIP p2p } &
+\textcolor{blue}{ 25.11: RTP (*) } \\
+\textcolor{red}{ 30.11: Presentación PFinal (*) } &
+\textcolor{blue}{ 02.12: Repaso  } \\
+\textcolor{red}{ 07.12: Tutoría PFinal 1 } &
+\textcolor{red}{ 09.12: Tutoría PFinal 2 } \\
+\textcolor{blue}{ (*) = entrega prácticas o test teoría} &
+\textcolor{violet}{ 15.01: Examen (*) (*)}
 \\
 \end{tabular}
 \end{center}
@@ -256,8 +287,6 @@ GSyC, Universidad Rey Juan Carlos}
 \item Prácticas: hasta 6 puntos. \\ Mínimo: Parte básica práctica final.
 \item Teoría: hasta 5 puntos. \\ Mínimo: 2 puntos.
 \item Al sumar teoría y prácticas, la suma ha de dar un 5 o más.
-\item Además, se puede conseguir medio puntito adicional (ver más adelante).
-\item Novedad: Las tareas serán individuales, pero podrás obtener puntuación extra por el desempeño de tu equipo.
 \end{itemize}
 
 
@@ -276,7 +305,7 @@ GSyC, Universidad Rey Juan Carlos}
   \begin{itemize}
     \item Si sumas más de diez, obtienes un diez
     \item En caso de que haya más alumnos con uno superior a diez que matrículas de honor, se darán a aquéllos con la suma de notas más alta
-    \item Al resto, les regalaremos un libro (dedicado, si quieres)
+    \item Al resto, les regalaremos un libro friqui (dedicado, si quieres)
   \end{itemize}
 \end{itemize}
 
@@ -293,17 +322,16 @@ GSyC, Universidad Rey Juan Carlos}
 \begin{itemize}
 \item Evaluación continua (hasta 3,5 puntos)
   \begin{itemize}
-    \item Las prácticas marcadas con un (*) se entregarán el lunes 
+    \item Las prácticas marcadas con un (*) se entregarán el lunes
           siguiente (hasta las 23:55) y darán hasta 0,7 puntos cada una.
   \end{itemize}
-\item Práctica final (hasta 2 puntos)
+\item Práctica final (hasta 2 puntos)   
   \begin{itemize}
     \item Requisitos mínimos ({\bf obligatorios}) y adicionales (opcionales)
     \item Los requisitos mínimos puede que no sean iguales para todos
     \item Enunciado: Mediados de noviembre. Entrega: Día de examen
     \item Habrá clases específicas de apoyo a la práctica final
   \end{itemize}
-\item Según cómo desempeñe tu equipo, podrás conseguir hasta 0,5 puntos más.
 \end{itemize}
 
 \end{frame}
@@ -315,14 +343,13 @@ GSyC, Universidad Rey Juan Carlos}
 \begin{itemize}
 \item Puntuación máxima:
   \begin{itemize}
-    \item Entrega 1 - 29.09 (``Python y GitHub''): 0,7 puntos
-    \item Entrega 2 - 13.10 (``SMIL, XML y Python''): 0,7 puntos
-    \item Entrega 3 - 27.10 (``Sockets, UDP y Python''): 0,7 puntos
-	\item Entrega 4 - 10.11 (``Sesión SIP + RTP''): 0,7 puntos
-    \item Entrega 5 - 24.11 (``Registrar simple''): 0,7 puntos
+    \item Entrega 1 - 05.10 (``Python y GitHub''): 0,7 puntos
+    \item Entrega 2 - 19.10 (``SMIL, XML y Python''): 0,7 puntos
+    \item Entrega 3 - 02.11 (``Sockets, UDP y Python''): 0,7 puntos
+	  \item Entrega 4 - 16.11 (``Sesión SIP + RTP''): 0,7 puntos
+    \item Entrega 5 - 30.11 (``Sesión SIP p2p''): 0,7 puntos
     \item Práctica final - parte básica: 0 puntos
     \item Práctica final - parte adicional: 2 puntos
-    \item Desempeño equipo: 0,5 puntos
   \end{itemize}
 \end{itemize}
 
@@ -338,16 +365,17 @@ GSyC, Universidad Rey Juan Carlos}
 \begin{itemize}
 \item {\bf Evaluación final global de teoría}:
 \begin{itemize}
-  \item Fecha: diciembre (convocatoria de diciembre)
-  \item Hasta 2,5 puntos (mínimo 1 punto)
+  \item Fecha: 15 de enero (convocatoria de diciembre)
+  \item Hasta 3 puntos (mínimo 1,2 punto)
+  \item Evaluación independiente (no por el profesor de la asignatura)
 \end{itemize}
 \item {\bf Método PEPEOLA}:
   \begin{itemize}
-    \item Hasta 2,5 puntos (mínimo 1 punto)
+    \item Hasta 2 puntos (mínimo 0,8 punto)
     \item Se ha de venir con el tema del día preparado
     \item Una semana antes se abrirá el tema en el Moodle y se indicarán lecturas (transparencias, documentos, enlaces) y/o vídeos
     \item Habrá tests de evaluación (limitado en el tiempo: 10 minutos para responder) para cada clase que habrá que realizar ANTES de clase.
-    \item ``As en la manga'': el 10.11 podemos \emph{declarar nulo} el método PEPEOLA.
+    \item ``As en la manga'': el 11.11 podemos \emph{declarar nulo} el método PEPEOLA.
   \end{itemize}
 \end{itemize}
 
@@ -394,7 +422,7 @@ Es una época de cambios en la universidad española:
 \huge Promoción del Estudio y la Preparación por Evaluación On-Line Automática
 
 \vspace{2cm}
-\footnotesize en castellano de ``andar por casa'': 
+\footnotesize en castellano de ``andar por casa'':
 
 que el estudiante venga con la siguiente clase preparada y se evalúe su preparación (a ser posible de manera autónoma y automatizada)
 \end{center}
@@ -452,14 +480,13 @@ que el estudiante venga con la siguiente clase preparada y se evalúe su preparac
 %  \item No debería suponer una dedicación en tiempo mayor que ir al examen final (y es de evaluación continua)
   %\item Los alumnos han de ver que este método vale la pena.
   \item Tras hacer los pertinentes cálculos, el tiempo de preparación
-por clase se ha fijado en una hora y media (incluido el test):
+por clase se ha fijado en dos horas (incluido el test):
   \begin{itemize}
     \item El primer test será de prueba para que los alumnos se familiaricen
-    \item Quedan 10 temas de teoría, para los cuales habrá 5 tests
-    \item Hay que superar 4 de los 5 tests
+    \item Quedan 9 temas de teoría, para los cuales habrá 4 tests
+    \item Hay que superar 3 de los 4 tests
     \item Se supera un tema con 6 o más respuestas acertadas (de 10)
     \item Aplicamos una función ``rara'' para calcular la nota final
-    \item Habrá un plus por desempeño positivo del equipo
   \end{itemize}
 \end{itemize}
 
@@ -469,12 +496,13 @@ por clase se ha fijado en una hora y media (incluido el test):
 \frametitle{Moodle}
 
 \begin{itemize}
-\item Se ruega poner foto vuestra y datos verídicos en vuestra ficha.
+\item Se ruega poner foto vuestra y datos verídicos en vuestra ficha en Moodle.
+\item Se ruega poner foto en vuestro perfil de GitHub.
 \item Se pedirá el tiempo que te ha llevado prepararte cada clase (pero eso no se evalúa, es un dato estadístico).
 \item A veces al mejor test de la semana, le damos un regalito. El mejor 10 es:
 \begin{itemize}
   \item El que ha acertado todas las preguntas (antes de revisión)
-  \item El que tiene foto (suya) en su perfil de Moodle
+  \item El que tiene foto (suya) en su perfil de Moodle y de GitHub
   \item En caso de haber más de uno, el que lo ha hecho en el menor tiempo
 \end{itemize}
 \end{itemize}
@@ -512,13 +540,13 @@ por clase se ha fijado en una hora y media (incluido el test):
 % (60 horas de clase presencial)
 %\item Según el cálculo que se realiza para ECTS, 6 créditos de los ``antiguos''
 %se transforman en unos 4,5 ECTS.
-\item Cada ECTS supone una 
+\item Cada ECTS supone una
 dedicación de un estudiante ``medio'' de 25 horas por crédito.
 \item Salen {\bf 150 horas} para la asignatura.
-\item Presencialidad (60 horas):
+\item Presencialidad (50 horas):
 \begin{itemize}
-  \item 12 clases de teoría (+1 de presentación)
-  \item 12 clases de prácticas 
+  \item 10 clases de teoría (+1 de presentación)
+  \item 14 clases de prácticas
 \end{itemize}
 \item No presencialidad:
 \begin{itemize}
@@ -528,30 +556,8 @@ dedicación de un estudiante ``medio'' de 25 horas por crédito.
   \item Entrega práctica final: 1 hora
   \item Preparación evaluación: 5 horas
   \item Evaluación global final (teoría): 1 hora
-  \item Semana que viene: 8 horas
 \end{itemize}
-\item Total = {\bf 133 horas}
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{(Probablemente) Hasta medio punto adicional...}
-
-\begin{itemize}
-  \item Prueba de una innovación docente
-  \item Durante las primeras semanas del curso
-  \item Campeonato virtual
-  \item Temática: Python y la \emph{shell}
-  \item Mínimo (dará 0.25 puntos)
-    \begin{itemize}
-      \item Participación en el campeonato
-    \end{itemize}
-  \item Máximo: 0.5 puntos (+ diploma)
-    \begin{itemize}
-      \item Según posicionamiento
-      \item Habrá equipos
-    \end{itemize}
+\item Total = {\bf 127 horas}
 \end{itemize}
 
 \end{frame}
