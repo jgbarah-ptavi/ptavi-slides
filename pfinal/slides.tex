@@ -42,7 +42,7 @@
 \institute{grex@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
 \author{Gregorio Robles}
-\date{30 de noviembre de 2014}
+\date{29 de noviembre de 2015}
 
 \frame{
 \maketitle
@@ -62,7 +62,7 @@ GSyC, Universidad Rey Juan Carlos}
 
 \begin{flushright}
 {\tiny
-(cc) 2008-14 Gregorio Robles, Jesús M. González Barahona \\
+(cc) 2008-15 Gregorio Robles, Jesús M. González Barahona \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 \ \\
@@ -81,12 +81,11 @@ GSyC, Universidad Rey Juan Carlos}
 
 \begin{itemize}
 \item Teoría: De 0 a 5 puntos (mínimo 2 puntos)
-\item Prácticas: De 0 a 5,5 puntos (mínimo: parte básica práctica final)
+\item Prácticas: De 0 a 6 puntos (mínimo: parte básica práctica final)
 \begin{itemize}
   \item Entrega práctica final parte básica: 0 puntos
-  \item Requisitos avanzados (y calidad) práctica final: hasta 2 puntos
+  \item Requisitos avanzados (y calidad) práctica final: hasta 2,5 puntos
 \end{itemize}
-\item Bonus de equipo: Hasta 0,5 puntos adicionales
 
 \item Importante: Al sumar todas las notas, se ha de conseguir un 5 o más.
 \end{itemize}
@@ -176,8 +175,9 @@ como se desee
 \frametitle{SIP: Session Initiation Protocol}
 
 \begin{itemize}
-  \item Métodos: REGISTER, ACK, INVITE, BYE, INFO
-  \item Códigos de respuesta: 100, 180, 200, 404, 405
+  \item Métodos: REGISTER, ACK, INVITE, BYE
+  \item Códigos de respuesta: 100, 180, 200, 400, 401, 404, 405
+  \item El registro es autenticado
   \item Detalles en el documento con instrucciones
 \end{itemize}
 
@@ -198,8 +198,8 @@ como se desee
     \item puerto donde estará el servidor escuchando, nombre del servidor, ruta del fichero de \emph{log}, tiempo de \emph{time out} de registro (en segundos), ruta del binario mp32rtp (ver más abajo) y ruta de la canción MP3 a enviar (ver más abajo).
    \end{itemize}
    \item Diccionario y fichero (consistencia). Patrón \emph{singleton}
-   \item No hace falta leer del fichero de base de datos (al menos en la parte
-básica)
+   \item En caso de caída, leemos del fichero los usuarios registrados
+   \item El registro es autenticado
 \end{itemize}
 
 \end{frame}
@@ -252,7 +252,7 @@ m=audio 12345 RTP
 ./mp32rtp -i direccionIP -p puerto < cancion.mp3
 \end{verbatim}
   \item Instrucciones detalladas en el documento de la práctica final
-  \item No hace falta escuchar la cancións
+  \item No hace falta escuchar la canción
 \end{itemize}
 
 \end{frame} 
@@ -271,18 +271,17 @@ m=audio 12345 RTP
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Equipos}
-
-\begin{itemize}
-  \item Legibilidad del código y seguimiento de la guía de estilo de Python
-  \item Comprobación de mensajes SIP y archivos de \emph{log} para que sigan las instrucciones
-  \item Servidores y clientes de los miembros se comunican entre sí, salvo que
-alguien haya realizado un requisito avanzado que lo impida
-\end{itemize}
-
-\end{frame}
+%
+%\begin{frame}
+%\frametitle{Criterios secundarios dde evaluación}
+%
+%\begin{itemize}
+%  \item Legibilidad del código y seguimiento de la guía de estilo de Python
+%  \item Comprobación de mensajes SIP y archivos de \emph{log} para que sigan las instrucciones
+%  \item Los servidores y clientes se comunican con los 
+%\end{itemize}
+%
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -291,6 +290,7 @@ alguien haya realizado un requisito avanzado que lo impida
 
 \begin{itemize}
   \item Detalladas al final del documento
+  \item Todavía pueden cambiar (atentos a la versión del documento)
   \item Se construyen encima de la parte básica (no tocan funcionalidad de la parte básica)
   \item Tienen una puntuación máxima asignada
   \item Se entregan indicando que se han implementado en un fichero de texto
