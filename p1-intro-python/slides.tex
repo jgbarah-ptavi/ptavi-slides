@@ -46,7 +46,7 @@ GSyC, Universidad Rey Juan Carlos}
 \institute{\{grex,jgb\}@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
 \author[Gregorio Robles]{Gregorio Robles}
-\date[Sept 2015]{16 de septiembre de 2015}
+\date[Sept 2016]{7 de septiembre de 2016}
 
 \frame{
 \maketitle
@@ -69,7 +69,7 @@ GSyC, Universidad Rey Juan Carlos}
  \\
 
 {\tiny
-(c) 2009-15 Gregorio Robles, Miguel Ortuño, Grupo de Sistemas y Comunicaciones \\
+(c) 2009-16 Gregorio Robles, Miguel Ortuño, Grupo de Sistemas y Comunicaciones \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 
@@ -426,7 +426,7 @@ Parémonos a ver las características de Python. Python es:
 
 \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 print("¡Hola Mundo!")
@@ -445,7 +445,7 @@ print("¡Hola Mundo!")
   \item Si lo guardamos como hola.py, se ejecuta desde la línea de comandos como:
 \begin{footnotesize}
 \begin{verbatim}
-$ python hola.py
+$ python3 hola.py
 \end{verbatim}
 \end{footnotesize}
 
@@ -475,7 +475,7 @@ $ ./hola.py
 \frametitle{Ficheros}
 \begin{itemize}
   
-\item \verb|open(nombre_fichero,modo)| devuelve un objeto fichero
+\item \verb|open(nombre_fichero, modo, encoding)| devuelve un objeto fichero
 
 modo:
 \begin{itemize}
@@ -486,6 +486,8 @@ modo:
 \item \verb|a|: Append
 
 \end{itemize}
+
+codificación (opcional): Por ejemplo, encoding='utf-8'
 
 \item \verb|write(cadena)| escribe la cadena en el fichero  
 \item \verb|read()| devuelve el contenido del fichero
@@ -501,7 +503,7 @@ modo:
 
 \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 fich=open('/tmp/prueba','w')
 fich.write("lunes\n")
 fich.close()
@@ -546,7 +548,7 @@ if __name__ == "__main__":
 Ejecución:
 \begin{footnotesize}
 \begin{verbatim}
-    $ python suma.py
+    $ python3 suma.py
 \end{verbatim}
 \end{footnotesize}
  
@@ -620,7 +622,7 @@ Las variable declaradas fuera de una función son globales
 %    """Ejemplo para hablar del ámbito"""
   \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 numero = 5
 def f(parametro):
     return parametro + numero
@@ -636,7 +638,7 @@ Las variable declaradas dentro de una función son locales
 %02
   \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 def f(parametro):
     numero = 5
     return parametro + numero
@@ -660,7 +662,7 @@ pero no modificar
 %03
   \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 numero = 5
 def f(parametro):
     numero = numero-1    #ERROR: no se puede modificar variable global
@@ -680,7 +682,7 @@ A menos que se use la sentencia \verb|global|
  %04 
   \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 numero = 5
 def f(parametro):
     global numero   #permite modificar una variable global
@@ -707,7 +709,7 @@ print(numero)  #4
   \begin{footnotesize}
  %06 
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 numero = 5
 def f(parametro):
     numero = 4   # ahora numero es variable local
@@ -894,7 +896,7 @@ asignado un valor.
 \end{itemize}
 \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 sum_elementos = 3 + 4 + 17
 media = suma_elementos / 3    # deletreamos mal la variable
 print(media)   # y el compilador nos avisa con un error
@@ -929,7 +931,7 @@ en la \emph{python library reference}
 
   \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 
 cadena = "más vale pájaro en mano"
 print(cadena.split())
@@ -1006,7 +1008,7 @@ print(lista.join())
 
 \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 entero = int(raw_input("Please enter an integer: "))
 if entero < 0:
      entero = 0
@@ -1310,7 +1312,7 @@ Nótese otro modelo de asignación múltiple
 
 \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 a=10
 while a > 0:
     print(a, end='')
@@ -1323,7 +1325,7 @@ equivale a
 
 \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 a=10
 while 1:
     print(a, end='')
@@ -1358,7 +1360,7 @@ Valor nulo: \verb|None|
 
   \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 import os
 os.system('ls -l')
 \end{verbatim}
@@ -1372,7 +1374,7 @@ os.system('ls -l')
 
   \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python
+#!/usr/bin/python3
 import sys
 print(sys.argv[1:])
 
@@ -1409,7 +1411,7 @@ en la \\\emph{python library reference}
 
 %  \begin{footnotesize}
 %\begin{verbatim}
-%#!/usr/bin/python
+%#!/usr/bin/python3
 %import pickle
 
 %cp={28:'madrid',08:'barcelona',33:'asturias'}
@@ -1498,7 +1500,7 @@ en la \\\emph{python library reference}
   \begin{footnotesize}
 \begin{verbatim}
 
-#!/usr/bin/python
+#!/usr/bin/python3
 while 1:
     x=int(raw_input("Introduce un nº"))
     print(x)
@@ -1520,7 +1522,7 @@ while 1:
   \begin{footnotesize}
 \begin{verbatim}
 
-#!/usr/bin/python
+#!/usr/bin/python3
 while 1:
     try:
         x=int(raw_input("Introduce un nº:"))
@@ -1547,7 +1549,7 @@ while 1:
   \begin{footnotesize}
 \begin{verbatim}
 
-#!/usr/bin/python
+#!/usr/bin/python3
 try:
     x=int(raw_input("Introduce un nº:"))
     print(x)
