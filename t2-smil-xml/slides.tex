@@ -36,12 +36,12 @@
 
 \begin{document}
 
-\title{Tema 2 - SMIL (y XML)}
+\title{Tema 2 - SMIL (y XML... y JSON)}
 \subtitle{Protocolos para la Transmisión de Audio y Vídeo en Internet}
 \institute{grex@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
 \author{Gregorio Robles}
-\date[Oct 2014]{1 de octubre de 2014}
+\date[Sep 2016]{28 de septiembre de 2016}
 
 \frame{
 \maketitle
@@ -61,7 +61,7 @@ GSyC, Universidad Rey Juan Carlos}
 
 \begin{flushright}
 {\tiny
-(cc) 2008-14 Gregorio Robles \\
+(cc) 2008-16 Gregorio Robles \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 \ \\
@@ -551,6 +551,85 @@ Source: http://2.bp.blogspot.com/-BDE-5-gmCQQ/TzZCoghyrxI/AAAAAAAAHtw/sriOLRZcO4
 
 \end{frame}
 
+
+
+\begin{frame}
+\frametitle{JSON}
+
+\begin{itemize}
+  \item JavaScript Object Notation
+  \item Formato de texto ligero para el intercambio de datos
+  \item Subconjunto de la notación literal de objetos de JavaScript
+  \item Amplia adopción como alternativa a XML
+  \item Mucho más sencillo escribir un analizador sintáctico (parser) de JSON 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Ejemplo de JSON}
+% Fuente: Wikipedia: https://es.wikipedia.org/wiki/JSON
+\begin{verbatim}
+{
+  "menu": {
+    "id": "file",
+    "value": "File",
+    "popup": {
+      "menuitem": [
+         {
+           "value": "New", "onclick": "CreateNewDoc()"
+         },{
+           "value": "Open", "onclick": "OpenDoc()"
+         },{
+           "value": "Close", "onclick": "CloseDoc()"
+         }
+      ]
+    }
+  }
+}
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ejemplo anterior en XML}
+% Fuente: Wikipedia: https://es.wikipedia.org/wiki/JSON
+\begin{verbatim}
+  <menu id="file" value="File">
+    <popup>
+      <menuitem value="New" onclick="CreateNewDoc()" />
+      <menuitem value="Open" onclick="OpenDoc()" />
+      <menuitem value="Close" onclick="CloseDoc()" />
+    </popup>
+  </menu>
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{JSON en Python}
+
+Importar funcionalidad (módulo \texttt{json}):
+\begin{verbatim}
+import json
+\end{verbatim}
+
+
+Escritura:
+\begin{verbatim}
+with open('data.json', 'w') as outfile:
+    json.dump(data, outfile)
+\end{verbatim}
+
+Lectura:
+\begin{verbatim}
+with open('data.json', 'r') as data_file:    
+    data = json.load(data_file)
+\end{verbatim}
+
+
+\end{frame}
 
 
 \frame{
