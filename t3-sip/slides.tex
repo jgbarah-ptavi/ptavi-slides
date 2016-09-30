@@ -40,8 +40,8 @@
 \subtitle{Protocolos para la Transmisión de Audio y Vídeo en Internet}
 \institute{grex@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
-\author{Gregorio Robles}
-\date[Oct 2014]{8 de octubre de 2014}
+\author{Gregorio Robles, Jesús M. González Barahona}
+\date[Oct 2016]{5 de octubre de 2016}
 
 \frame{
 \maketitle
@@ -61,7 +61,7 @@ GSyC, Universidad Rey Juan Carlos}
 
 \begin{flushright}
 {\tiny
-(cc) 2008-14 Jesús M. González Barahona, Gregorio Robles \\
+(cc) 2008-16 Gregorio Robles, Jesús M. González Barahona \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 \ \\
@@ -81,13 +81,13 @@ GSyC, Universidad Rey Juan Carlos}
 
 \begin{itemize}
 \item Session Initiation Protocol: iniciación de sesiones sobre IP
-\item RFC 2543 (SIP 2.0), RFC 3261 (clarified SIP 2.0)
 \item Protocolo de señalización: prepara el establecimiento de
   sesiones multimedia
 \item Concepto amplio de sesión: una llamada entre dos, una
   videoconferencia, un juego interactivo entre varios, etc.
-\item Protocolo en evolución (mediante adiciones)
+\item Protocolo en evolución (mediante añadidos)
 \item Usado en Internet, 3GPP
+\item RFC 2543 (SIP 2.0), RFC 3261 (clarified SIP 2.0)
 \item En VoIP compite con H.323 (IETF frente a ITU, en cierta medida)
 \end{itemize}
 
@@ -99,14 +99,14 @@ GSyC, Universidad Rey Juan Carlos}
 \frametitle{Principales características}
 
 \begin{itemize}
-\item Ligero (sólo seis métodos)
-\item Basado en texto (similar a HTTP)
-\item Independiente del nivel de transporte (TCP, UDP, ATM, etc.)
-\item Se encarga del establecimiento y la terminación de la
+  \item Ligero (sólo seis métodos en su versión básica)
+  \item Basado en texto (similar a HTTP)
+  \item Independiente del nivel de transporte (TCP, UDP, ATM, etc.)
+  \item Se encarga del establecimiento y la terminación de la
   comunicación
-\item Fundamentalmente es un protocolo peer-to-peer, aunque tiene servidores
-\item Protocolo sin estado
-\item Puerto habitual: 5060
+  \item Fundamentalmente es un protocolo peer-to-peer, aunque tiene servidores
+  \item Protocolo sin estado
+  \item Puerto habitual: 5060
 \end{itemize}
 
 \end{frame}
@@ -114,15 +114,15 @@ GSyC, Universidad Rey Juan Carlos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Peticiones}
+\frametitle{Peticiones básicas}
 
 \begin{itemize}
-\item INVITE: invitación a sesión
-\item ACK: confirmación de respuesta a INVITE
-\item BYE: terminación de sesión
-\item CANCEL: cancela peticiones, pero no termina la sesión
-\item OPTIONS: pregunta las capacidades de los servidores
-\item REGISTER: registra la dirección con un registrar
+  \item INVITE: invitación a sesión
+  \item ACK: confirmación de respuesta a INVITE
+  \item BYE: terminación de sesión
+  \item CANCEL: cancela peticiones, pero no termina la sesión
+  \item OPTIONS: pregunta las capacidades de los servidores
+  \item REGISTER: registra la dirección con un registrar
 \end{itemize}
 
 \end{frame}
@@ -133,14 +133,15 @@ GSyC, Universidad Rey Juan Carlos}
 \frametitle{Respuestas (ejemplos)}
 
 \begin{itemize}
-\item 1xx: información (180: llamando)
-\item 2xx: éxito (200: OK)
-\item 3xx: redirección (302: movimiento temporal)
-\item 4xx: fallo (404: usuario no encontrado)
-\item 5xx: fallo del servidor (500: error interno del servidor)
-\item 6xx: fallo global
+  \item 1xx: información (180: llamando)
+  \item 2xx: éxito (200: OK)
+  \item 3xx: redirección (302: movimiento temporal)
+  \item 4xx: fallo (404: usuario no encontrado)
+  \item 5xx: fallo del servidor (500: error interno del servidor)
+  \item 6xx: fallo global
 \end{itemize}
 
+Todas: \footnotesize{\url{https://en.wikipedia.org/wiki/List_of_SIP_response_codes}}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,36 +150,92 @@ GSyC, Universidad Rey Juan Carlos}
 \frametitle{Elementos de red}
 
 \begin{itemize}
-\item Terminales o \emph{user agents} (usualmente, los que establecerán la
+  \item Terminales o \emph{user agents} (usualmente, los que establecerán la
   comunicación): Pueden comunicarse directamente, sin más elementos
-\item Proxy: intermediarios que autentican, encaminan peticiones de
-  llamada, etc
-\item Registrar: permite informar de la localización actual
-\item Redirect: genera redirecciones a peticiones, de manera que dirige las peticiones al siguiente servidor.
+  \item Proxy: intermediarios que autentican, encaminan peticiones de
+  llamada, etc. Sólo mantiene el estado de la transacción.
+  \item Registrar: permite informar de la localización actual
+  \item Redirect: genera redirecciones a peticiones, de manera que dirige las peticiones al siguiente servidor.
+  \item (Back-to-Back User Agent (B2BUA)): controla la llamada. Es como un proxy, pero manteniendo todo el estado de la llamada. Puede realizar, por tanto, tareas que un proxy no puede realizar como tarificación, control de calidad, etc.
 \end{itemize}
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Ejemplo de una sesión SIP (I)}
+\vspace{-0.2cm}
+\begin{center}
+  \includegraphics[width=10cm]{figs/SIP-registration-flow.png}
+  % Source: https://en.wikipedia.org/wiki/Session_Initiation_Protocol#/media/File:SIP-registration-flow.png
+\end{center}
+\vspace{-0.2cm}
+\begin{center}
+Registro SIP de un \emph{user agent} con autenticación. \\
+Hablaremos del proceso de autenticación la semana que viene.
+\end{center}
+
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Ejemplo de una sesión}
-
+\frametitle{Ejemplo de una sesión SIP (II)}
+\vspace{-0.2cm}
 \begin{center}
-  \includegraphics[width=6.6cm]{figs/complete-sip-session.png}
+  \includegraphics[width=10cm]{figs/SIP_call_flow_between_UA,_Redirect_Server,_Proxy_and_UA.png}
+  % Source: https://en.wikipedia.org/wiki/Session_Initiation_Protocol#/media/File:SIP_call_flow_between_UA,_Redirect_Server,_Proxy_and_UA.png
 \end{center}
-
-En los puntos finales, hay un \emph{user agent}. Entre medias, tenemos un servidor que actúa de \emph{Registrar} y \emph{Proxy}.
+\vspace{-0.2cm}
+\begin{center}
+Flujo de llamadas a través de Redirect Server y Proxy.
+\end{center}
 
 \end{frame}
 
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}
+%\frametitle{Ejemplo de una sesión SIP (III)}
+%\vspace{-0.5cm}
+%\begin{center}
+%  \includegraphics[width=7.2cm]{figs/complete-sip-session.png}
+%\end{center}
+%\vspace{-0.7cm}
+
+%En los puntos finales, hay un \emph{user agent}. Entre medias, tenemos un servidor que en este caso actúa de \emph{Registrar} {\bf y} \emph{Proxy}.
+
+%\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Cabeceras}
+\frametitle{Ejemplo de una sesión SIP (III)}
+\vspace{-0.2cm}
+\begin{center}
+  \includegraphics[width=7cm]{figs/SIP-B2BUA-call-flow.png}
+  % Source: https://en.wikipedia.org/wiki/Session_Initiation_Protocol#/media/File:SIP-B2BUA-call-flow.png. By Korolev Alexandr - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=39448710
+\end{center}
+\vspace{-0.2cm}
+\begin{center}
+Establecimiento de sesión a través de un \emph{back-to-back user agent}. \\
+\vspace{0.5cm}
+\tiny{By Korolev Alexandr - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=39448710}
+\end{center}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Cabeceras más importantes}
 
 \begin{itemize}
 \item {\bf Via}: muestra el protocolo de transporte y la ruta de la petición. Cada proxy añade una línea a este campo
@@ -192,14 +249,31 @@ En los puntos finales, hay un \emph{user agent}. Entre medias, tenemos un servid
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Petición SIP completa}
+\vspace{-0.2cm}
+\begin{center}
+  \includegraphics[width=10cm]{figs/sip-header.png}
+  % Source: https://docs.oracle.com/cd/E27702_01/doc.51/e27707/img/message_blocks.gif
+\end{center}
+\vspace{-0.2cm}
+\begin{center}
+La petición SIP puede tener cuerpo (\emph{message body}) o no.
+\end{center}
+
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-\frametitle{Peticiones}
+\frametitle{Ejemplo de petición completa}
 
 \begin{footnotesize}
 \begin{verbatim}
+REGISTER sip:grex@ekiga.net SIP/2.0
 Via: SIP/2.0/UDP 192.168.0.100:5060;rport;
      branch=z9hG4bK646464100000000b43c52d6c00000d1200000f03
 Content-Length: 0
@@ -225,32 +299,23 @@ Authorization: Digest username="20000",realm="192.168.0.101",
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-\frametitle{Respuesta (ejemplo)}
+\frametitle{Ejemplo de respuesta}
 
 \begin{footnotesize}
 \begin{verbatim}
-Internet Protocol, Src Addr: 192.168.0.101 (192.168.0.101), Dst Addr:
-192.168.0.100 (192.168.0.100)
-User Datagram Protocol, Src Port: 5060 (5060), Dst Port: 5060 (5060)
-Session Initiation Protocol
-Status-Line: SIP/2.0 200 OK
-Status-Code: 200
-Resent Packet: False
-Via: SIP/2.0/UDP 192.168.0.100:5060;rport;
-     branch=z9hG4bK646464100000000b43c52d6c00000d1200000f03
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.30:5060;received=66.87.48.68
+From: sip:sip2@iptel.org
+To: sip:sip2@iptel.org;tagi=794fe65c16edfdf45da4fc39a5d2867c.b713
+Call-ID: 2443936363@192.168.1.30
+CSeqi: 63629 REGISTER
+Contact: Msip:sip2@66.87.48.68:5060;transport=udp>;q=0.00;expires=120
+Server: Sip EXpress router (0.8.11pre21xrc (i386/linux))
 Content-Length: 0
-Contact: <sip:20100@192.168.0.100:5060>
-Call-ID: ED9A8038-A29D-40AB-95B1-0F5F5E905574@100.100.100.16
-CSeq: 36 REGISTER
-From: <sip:20000@192.168.0.101>;tag=910033437093
-Max-Forwards: 70
-To: <sip:20000@192.168.0.101:5060>
-Authorization: Digest username="20100",realm="192.168.0.101",
-               nonce="43c52e9d29317c0bf1f885b9aaff1522d93c7692",
-               uri="sip:192.168.0.101",
-               response="f69463b8d3efdb87c388efa9be1a1e63"
-
-\end{verbatim}
+Warning: 392 195.37.77.101:5060 "Noisy feedback tells:
+  pid=5110 req_src_ip=66.87.48.68 req_src_port=5060 
+  in_uri=sip:iptel.org out_uri=sip:iptel.org via_cnt==1"
+  \end{verbatim}
 \end{footnotesize}
 
 \end{frame}
@@ -264,7 +329,13 @@ Authorization: Digest username="20100",realm="192.168.0.101",
 
 \begin{itemize}
 \item Protocolo portador para descripciones SDP
+  \begin{itemize}
+    \item Este protocolo veremos en dos semanas
+  \end{itemize}
 \item Protocolo señalizador para RTP
+  \begin{itemize}
+     \item Este protocolo lo veremos en cuatro semanas
+   \end{itemize}
 \item Funcionalidad parcialmente similar a H.323
 \item Hasta cierto punto equivalente a SS7, pero para VoIP
 \end{itemize}
