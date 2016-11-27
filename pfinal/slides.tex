@@ -42,7 +42,7 @@
 \institute{grex@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
 \author{Gregorio Robles}
-\date{29 de noviembre de 2015}
+\date{28 de noviembre de 2016}
 
 \frame{
 \maketitle
@@ -62,7 +62,7 @@ GSyC, Universidad Rey Juan Carlos}
 
 \begin{flushright}
 {\tiny
-(cc) 2008-15 Gregorio Robles, Jesús M. González Barahona \\
+(cc) 2008-16 Gregorio Robles, Jesús M. González Barahona \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 \ \\
@@ -80,14 +80,14 @@ GSyC, Universidad Rey Juan Carlos}
 \frametitle{Evaluación}
 
 \begin{itemize}
-\item Teoría: De 0 a 5 puntos (mínimo 2 puntos)
-\item Prácticas: De 0 a 6 puntos (mínimo: parte básica práctica final)
+  \item Prácticas: hasta 5,5 puntos. \\ Mínimo: Parte básica práctica final.
+  \item Teoría: hasta 5 puntos. \\ Mínimo: Superar la evaluación final de teoría.
+  \item Al sumar teoría y prácticas, la suma ha de dar un 5 o más.
 \begin{itemize}
   \item Entrega práctica final parte básica: 0 puntos
-  \item Requisitos avanzados (y calidad) práctica final: hasta 2,5 puntos
+  \item Requisitos avanzados (y calidad) práctica final: hasta 2 puntos
 \end{itemize}
 
-\item Importante: Al sumar todas las notas, se ha de conseguir un 5 o más.
 \end{itemize}
 
 \end{frame}
@@ -102,8 +102,8 @@ GSyC, Universidad Rey Juan Carlos}
   \item Realizadas en Python
   \item Temática: servicio SIP
   \item Fecha de entrega: por decidir
-%  \item Habrá clases específicas de apoyo a la práctica final en sesiones de prácticas
-  \item Habrá tutorías en el laboratorio
+  \item Habrá clases específicas de apoyo a la práctica final
+  \item Habrá tutorías en el laboratorio (lunes, 28.11 y lunes 5.12)
   \item Hay instrucciones (muy) detalladas en el guión
 \end{itemize}
 
@@ -213,10 +213,15 @@ Ejemplo:
 
 \begin{footnotesize}
 \begin{verbatim}
-20090218152045 Starting...
-20090218153012 REGISTER grex@gsyc.urjc.es sent to server localhost 9001
-20090218153017 200 OK 12345678 received from server localhost 9001
-20090218153036 INVITE espinete@sesamo.org received from grex@gsyc.urjc.es
+...
+20161128152045 Starting...
+20161128153012 Sent to 127.0.0.1:5555: REGISTER sip:leonard@bigbang.org:1234 SIP/2.0 [...]
+20161128153017 Received from 127.0.0.1:5555: 200 OK [...]
+20161128153036 Sent to 127.0.0.1:5555: INVITE penny@girlnextdoor.com [...]
+...
+20161128160035 Sent to 127.0.0.1:5555: BYE [...]
+20161128160035 Received from 127.0.0.1:5555: 200 OK [...]
+20161128160112 Finishing.
 \end{verbatim}
 \end{footnotesize}
 \end{frame} 
