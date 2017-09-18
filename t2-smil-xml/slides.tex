@@ -13,7 +13,7 @@
 %
 
 \documentclass{beamer}
-\usetheme{GSyC}
+\usetheme{JuanLesPins}
 %\usepackage[spanish]{babel}
 \usepackage[latin1]{inputenc}
 \usepackage{graphics}
@@ -41,7 +41,7 @@
 \institute{grex@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
 \author{Gregorio Robles}
-\date[Sep 2016]{28 de septiembre de 2016}
+\date[Sep 2017]{27 de septiembre de 2017}
 
 \frame{
 \maketitle
@@ -61,7 +61,7 @@ GSyC, Universidad Rey Juan Carlos}
 
 \begin{flushright}
 {\tiny
-(cc) 2008-16 Gregorio Robles \\
+(cc) 2008-17 Gregorio Robles \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 \ \\
@@ -263,10 +263,12 @@ Ejemplo de solución:
 \begin{frame}[fragile]
 \frametitle{XML Schema Definition (XSD)}
 
+\vspace{-0.3cm}
 \begin{footnotesize}
 \begin{verbatim}
 <?xml version="1.0" encoding="utf-8" ?>
-<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
  <xs:element name="Person">
   <xs:complexType>
    <xs:sequence>
@@ -519,7 +521,7 @@ class ChistesHandler(ContentHandler):
 
 \begin{footnotesize}
 \begin{verbatim}
-#!/usr/bin/python                 
+#!/usr/bin/python3             
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
@@ -537,11 +539,13 @@ parser.parse(open('chistes.xml'))
 
 
 \begin{frame}
-\frametitle{Para finalizar... sí, hay gente que es realmente friqui}
+\frametitle{(Sí, hay gente que es realmente friqui)}
 
 \begin{center}
   \includegraphics[width=8.5cm]{figs/businesscard.jpg}
 \end{center}
+
+\vspace{-0.5cm}
 
 \begin{flushright}
 {\tiny
