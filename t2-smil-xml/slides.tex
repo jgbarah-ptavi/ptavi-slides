@@ -473,17 +473,17 @@ class ChistesHandler(ContentHandler):
   def __init__ (self):
     self.calificacion = ""
     self.pregunta = ""
-    self.inPregunta = 0
+    self.inPregunta = False
     self.respuesta = ""
-    self.inRespuesta = 0
+    self.inRespuesta = False
 
   def startElement(self, name, attrs):
     if name == 'chiste':
       self.calificacion = attrs.get('calificacion',"")
     elif name == 'pregunta':
-      self.inPregunta = 1
+      self.inPregunta = True
     elif name == 'respuesta':
-      self.inRespuesta = 1
+      self.inRespuesta = True
 \end{verbatim}
 \end{footnotesize}
 
@@ -497,12 +497,12 @@ class ChistesHandler(ContentHandler):
 
   def endElement(self, name):
     if name == 'pregunta':
-      print self.pregunta
+      print(self.pregunta)
       self.pregunta = ""
-      self.inPregunta = 0
+      self.inPregunta = False
     if name == 'respuesta':
       self.respuesta = ""
-      self.inRespuesta = 0
+      self.inRespuesta = False
 
   def characters(self, char):
     if self.inPregunta:
