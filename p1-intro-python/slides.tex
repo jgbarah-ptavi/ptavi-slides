@@ -46,7 +46,7 @@ GSyC, Universidad Rey Juan Carlos}
 \institute{\{grex,jgb\}@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
 \author[Gregorio Robles]{Gregorio Robles}
-\date[Sept 2017]{10 de septiembre de 2018}
+\date[Sept 2019]{9 de septiembre de 2019}
 
 \frame{
 \maketitle
@@ -69,7 +69,7 @@ GSyC, Universidad Rey Juan Carlos}
  \\
 
 {\tiny
-(c) 2009-18 Gregorio Robles, Miguel Ortuño, Grupo de Sistemas y Comunicaciones \\
+(c) 2009-19 Gregorio Robles, Miguel Ortuño, Grupo de Sistemas y Comunicaciones \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 
@@ -239,16 +239,16 @@ Puede haber caracteres especiales\\
 \item Tipo de datos predefinido en Python, va mucho más allá de los
   arrays
 \item Es un conjunto {\bf indexado} de elementos, no necesariamente homogéneos
-\item Sintaxis:Identificador de lista, mas índice entre corchetes
+\item Sintaxis: Identificador de lista, mas índice entre corchetes
 \item Cada elemento se separa del anterior por un caracter \verb|,|
 \end{itemize}
   \begin{footnotesize}
 \begin{verbatim}
-colores = ['rojo','amarillo']
-colores.append('verde')
-print(colores)
-print(colores[2])
-print(len(colores))
+hijos = ['Gregor','Cayetana']
+hijos.append('Manuel')
+print(hijos)
+print(hijos[2])
+print(len(hijos))
 
 cosas = ['uno', 2, 3.0]
 
@@ -366,7 +366,7 @@ print(paises); print(paises["fr"])
 extensiones = {}
 extensiones['py'] = 'python'
 extensiones['txt'] = 'texto plano'
-extensiones['ps'] = 'PostScript'
+extensiones['doc'] = 'Word'
 
 for pais in paises: # iteramos por el diccionario
    print(pais, paises[pais])
@@ -595,6 +595,45 @@ if __name__ == "__main__":
   directamente (sin cualificarlos con el nombre del módulo).
 \end{itemize}
 \end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Test Unitarios}
+
+\begin{itemize}
+\item La automatización de tests tiene muchas ventajas
+\item Tantas, que hay gente que incluso dice que ¡primero deberíamos escribir los tests!
+\item En Python, se pueden escribir tests unitarios con ayuda del módulo \verb|unittest|
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Test Unitarios}
+
+\begin{footnotesize}
+\begin{verbatim}
+import calc
+import unittest
+
+class TestAdd(unittest.TestCase):
+    """
+    Test the add function
+    """
+ 
+    def test_add_integers(self):
+        """
+        Test that the addition of two integers
+        """
+        result = calc.add(1, 2)
+        self.assertEqual(result, 3)
+
+if __name__ == '__main__':
+    unittest.main()
+\end{verbatim}
+\end{footnotesize}
+
+\end{frame}
+
 
 
 \begin{frame}
