@@ -7,8 +7,8 @@
 %
 
 %
-% Gr·ficos:
-% Los gr·ficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
+% Gr√°ficos:
+% Los gr√°ficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
 % Los EPS deben convertirse a PDF (usar epstopdf)
 %
 
@@ -27,30 +27,30 @@
 
 %% Metadatos del PDF.
 \hypersetup{
-  pdftitle={PTAVI :: PresentaciÛn Pr·ctica Final},
-  pdfauthor={Gregorio Robles, Jes˙s M. Gonz·lez Barahona},
+  pdftitle={PTAVI :: Presentaci√≥n Pr√°ctica Final},
+  pdfauthor={Gregorio Robles, Jes√∫s M. Gonz√°lez Barahona},
   pdfcreator={GSyC, Universidad Rey Juan Carlos},
   pdfproducer=PDFLaTeX,
-  pdfsubject={PTAVI :: PresentaciÛn Pr·ctica Final},
+  pdfsubject={PTAVI :: Presentaci√≥n Pr√°ctica Final},
 }
 %%
 
 \begin{document}
 
-\title{PresentaciÛn de la Pr·ctica Final}
-\subtitle{Protocolos para la TransimisiÛn de Audio y VÌdeo por Internet}
+\title{Presentaci√≥n de la Pr√°ctica Final}
+\subtitle{Protocolos para la Transimisi√≥n de Audio y V√≠deo por Internet}
 \institute{grex@gsyc.urjc.es \\
 GSyC, Universidad Rey Juan Carlos}
 \author{Gregorio Robles}
-\date{2 de diciembre de 2018}
+\date{25 de noviembre de 2019}
 
 \frame{
 \maketitle
 }
 
 
-% Si el titulo o el autor se quieren acortar para los pies de p·gina
-% se pueden redefinir aquÌ:
+% Si el titulo o el autor se quieren acortar para los pies de p√°gina
+% se pueden redefinir aqu√≠:
 %\title{Titulo corto}
 %\author{Autores abreviado}
 
@@ -62,7 +62,7 @@ GSyC, Universidad Rey Juan Carlos}
 
 \begin{flushright}
 {\tiny
-(cc) 2008-18 Gregorio Robles, Jes˙s M. Gonz·lez Barahona \\
+(cc) 2008-19 Gregorio Robles, Jes√∫s M. Gonz√°lez Barahona \\
   Some rights reserved. This work licensed under Creative Commons \\
   Attribution-ShareAlike License. To view a copy of full license, see \\
 \ \\
@@ -74,18 +74,18 @@ GSyC, Universidad Rey Juan Carlos}
 \end{flushright}
 }
 
-\section{Recordatorio de EvaluaciÛn de PTAVI}
+\section{Recordatorio de Evaluaci√≥n de PTAVI}
 
 \begin{frame}
-\frametitle{EvaluaciÛn}
+\frametitle{Evaluaci√≥n}
 
 \begin{itemize}
-  \item Pr·cticas: hasta 6 puntos. \\ MÌnimo: Parte b·sica pr·ctica final.
-  \item TeorÌa: hasta 5 puntos. \\ MÌnimo: Superar la evaluaciÛn final de teorÌa.
-  \item Al sumar teorÌa y pr·cticas, la suma ha de dar un 5 o m·s.
+  \item Pr√°cticas: hasta 5,5 puntos. \\ M√≠nimo: Parte b√°sica pr√°ctica final.
+  \item Teor√≠a: hasta 5 puntos. \\ M√≠nimo: Superar la evaluaci√≥n final de teor√≠a.
+  \item Al sumar teor√≠a y pr√°cticas, la suma ha de dar un 5 o m√°s.
 \begin{itemize}
-  \item Entrega pr·ctica final parte b·sica: 0 puntos
-  \item Requisitos avanzados (y calidad) pr·ctica final: hasta 2,5 puntos
+  \item Entrega pr√°ctica final parte b√°sica: 0 puntos
+  \item Requisitos avanzados pr√°ctica final: hasta 2 puntos
 \end{itemize}
 \end{itemize}
 
@@ -93,25 +93,26 @@ GSyC, Universidad Rey Juan Carlos}
 
 
 \begin{frame}
-\frametitle{Pr·ctica final}
+\frametitle{Pr√°ctica final}
 
 \begin{itemize}
   \item Individual
-  \item De obligatorio cumplimiento (i.e., sin las pr·cticas aprobadas, no se aprueba la asignatura)
+  \item De obligatorio cumplimiento (i.e., sin las pr√°cticas aprobadas, no se aprueba la asignatura)
   \item Realizadas en Python
-  \item Tem·tica: servicio SIP
-  \item Fecha de entrega: por decidir
-  \item Habr· clases especÌficas de apoyo a la pr·ctica final
-  \item Habr· tutorÌas en el laboratorio (lunes 3.12 y miÈrcoles 5.12 a las 9:00, probablemente lunes 10.12 y miÈrcoles 12.12 a las 9:00)
-  \item Hay instrucciones (muy) detalladas en el guiÛn
-  \item AtenciÛn: el guiÛn podrÌa cambiar ligeramente durante los prÛximos dÌas
+  \item Tem√°tica: servicio SIP
+  \item Fecha de entrega: 23.12.2019 a las 12:00 (ofrece la posibilidad de hacer partes opcionales)
+  \item Fecha de entrega: 10.1.2020 a las 12:00
+  \item Habr√° clases espec√≠ficas de apoyo a la pr√°ctica final
+  \item Habr√° tutor√≠as en el laboratorio (lunes 2.12 a las 9:00, mi√©rcoles 3.12 a las 9:00, mi√©rcoles 11.1 a las 9:00)
+  \item Hay instrucciones (muy) detalladas en el gui√≥n
+  \item Atenci√≥n: el gui√≥n podr√≠a cambiar ligeramente durante los pr√≥ximos d√≠as
 \end{itemize}
 
 \end{frame}
 
 %%
 
-\section{Pr·ctica Final}
+\section{Pr√°ctica Final}
 
 \begin{frame}
 \frametitle{Objetivo Principal}
@@ -127,22 +128,22 @@ GSyC, Universidad Rey Juan Carlos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Requisitos mÌnimos}
+\frametitle{Requisitos m√≠nimos}
 
 \begin{itemize}
 \item SIP User Agent (cliente y servidor). Pueden ejecutarse por separado.
 \begin{itemize}
-  \item DescripciÛn de sesiÛn con SDP
+  \item Descripci√≥n de sesi√≥n con SDP
 \end{itemize}
-\item Servidor Registrar y Proxy SIP (un ˙nico servidor real)
+\item Servidor Registrar y Proxy SIP (un √∫nico servidor real)
 \begin{itemize}
   \item Base de datos de usuarios registrados en fichero de texto
   \item \emph{time out}
 \end{itemize}
-\item EnvÌo RTP (con mp32rtp)
+\item Env√≠o RTP (con mp32rtp)
 \item En todos los clientes y servidores:
 \begin{itemize}
-  \item ConfiguraciÛn por defecto almacenada en un archivo XML.
+  \item Configuraci√≥n por defecto almacenada en un archivo XML.
   \item Mensajes de log en fichero de texto.
 \end{itemize}
 
@@ -159,10 +160,10 @@ GSyC, Universidad Rey Juan Carlos}
 \begin{itemize}
   \item El protocolo SIP se debe seguir estrictamente
   \item Los nombres de los programas vienen especificados
-  \item Los par·metros de los programas han de ser los que se indican
-  \item El formato de los logs est· definido
+  \item Los par√°metros de los programas han de ser los que se indican
+  \item El formato de los logs est√° definido
   \item Algunos mensajes de error vienen definidos
-  \item Para el resto de cosas, incluida la implementaciÛn, se puede hacer 
+  \item Para el resto de cosas, incluida la implementaci√≥n, se puede hacer 
 como se desee
 \end{itemize}
 
@@ -175,8 +176,8 @@ como se desee
 \frametitle{SIP: Session Initiation Protocol}
 
 \begin{itemize}
-  \item MÈtodos: REGISTER, ACK, INVITE, BYE
-  \item CÛdigos de respuesta: 100, 180, 200, 400, 401, 404, 405
+  \item M√©todos: REGISTER, ACK, INVITE, BYE
+  \item C√≥digos de respuesta: 100, 180, 200, 400, 401, 404, 405
   \item El registro es autenticado
   \item Detalles en el documento con instrucciones
 \end{itemize}
@@ -193,12 +194,12 @@ como se desee
 \frametitle{Servidor Registrar}
 
 \begin{itemize}
-  \item ConfiguraciÛn almacenada en XML
+  \item Configuraci√≥n almacenada en XML
   \begin{itemize}
-    \item puerto donde estar· el servidor escuchando, nombre del servidor, ruta del fichero de \emph{log}, tiempo de \emph{time out} de registro (en segundos), ruta del binario mp32rtp (ver m·s abajo) y ruta de la canciÛn MP3 a enviar (ver m·s abajo).
+    \item puerto donde estar√° el servidor escuchando, nombre del servidor, ruta del fichero de \emph{log}, tiempo de \emph{time out} de registro (en segundos), ruta del binario mp32rtp (ver m√°s abajo) y ruta de la canci√≥n MP3 a enviar (ver m√°s abajo).
    \end{itemize}
-   \item Diccionario y fichero (consistencia). PatrÛn \emph{singleton}
-   \item En caso de caÌda, leemos del fichero los usuarios registrados
+   \item Diccionario y fichero (consistencia). Patr√≥n \emph{singleton}
+   \item En caso de ca√≠da, leemos del fichero los usuarios registrados
    \item El registro es autenticado
 \end{itemize}
 
@@ -231,7 +232,7 @@ Ejemplo:
 \begin{frame}[fragile]
 \frametitle{SDP: Session Description Protocol}
 
-Ejemplo de cuerpo de mensaje con SDP (ojo, esto sÛlo es el cuerpo):
+Ejemplo de cuerpo de mensaje con SDP (ojo, esto s√≥lo es el cuerpo):
 
 \begin{verbatim}
 v=0
@@ -246,18 +247,18 @@ m=audio 12345 RTP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-\frametitle{EnvÌo RTP}
+\frametitle{Env√≠o RTP}
 
 \begin{itemize}
   \item mp32rtp
-  \item Hace falta descargarlo, y darle permisos de ejecuciÛn
-  \item Ver README para su ejecuciÛn: 
+  \item Hace falta descargarlo, y darle permisos de ejecuci√≥n
+  \item Ver README para su ejecuci√≥n: 
 
 \begin{verbatim}
 ./mp32rtp -i direccionIP -p puerto < cancion.mp3
 \end{verbatim}
-  \item Instrucciones detalladas en el documento de la pr·ctica final
-  \item No hace falta escuchar la canciÛn
+  \item Instrucciones detalladas en el documento de la pr√°ctica final
+  \item No hace falta escuchar la canci√≥n
 \end{itemize}
 
 \end{frame} 
@@ -265,7 +266,7 @@ m=audio 12345 RTP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Ejemplo de una sesiÛn SIP}
+\frametitle{Ejemplo de una sesi√≥n SIP}
 
 \begin{center}
   \includegraphics[width=8cm]{figs/complete-sip-session.png}
@@ -278,11 +279,11 @@ m=audio 12345 RTP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %\begin{frame}
-%\frametitle{Criterios secundarios dde evaluaciÛn}
+%\frametitle{Criterios secundarios dde evaluaci√≥n}
 %
 %\begin{itemize}
-%  \item Legibilidad del cÛdigo y seguimiento de la guÌa de estilo de Python
-%  \item ComprobaciÛn de mensajes SIP y archivos de \emph{log} para que sigan las instrucciones
+%  \item Legibilidad del c√≥digo y seguimiento de la gu√≠a de estilo de Python
+%  \item Comprobaci√≥n de mensajes SIP y archivos de \emph{log} para que sigan las instrucciones
 %  \item Los servidores y clientes se comunican con los 
 %\end{itemize}
 %
@@ -294,12 +295,8 @@ m=audio 12345 RTP
 \frametitle{Requisitos Avanzados}
 
 \begin{itemize}
-  \item Detalladas al final del documento
-  \item TodavÌa pueden cambiar (atentos a la versiÛn del documento)
-  \item Se construyen encima de la parte b·sica (no tocan funcionalidad de la parte b·sica)
-  \item Tienen una puntuaciÛn m·xima asignada
-  \item Se entregan indicando que se han implementado en un fichero de texto
-  \item Se pueden proponer otras
+  \item Para realizarlas, hay que entregar la parte opcional antes de Navidades
+  \item Se presentan en un documento aparte, que se publicar√° en breve
 \end{itemize}
 
 \end{frame}
