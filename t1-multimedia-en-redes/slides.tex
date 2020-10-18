@@ -37,21 +37,30 @@
 %% Metadatos del PDF.
 \hypersetup{
   pdftitle={Tema 1 - Multimedia en Redes},
-  pdfauthor={Gregorio Robles},
+  pdfauthor={Gregorio Robles y Jesús M González Barahona},
   pdfcreator={GSyC, Universidad Rey Juan Carlos},
   pdfproducer=PDFLaTeX,
   pdfsubject={Tema 1 - Multimedia en Redes},
 }
 %%
 
+\AtBeginSection[]
+{
+\begin{frame}<beamer>
+\begin{center}
+{\Huge \insertsection}
+\end{center}
+\end{frame}
+}
+
 \begin{document}
 
 \title{Tema 1 - Multimedia en Redes}
 \subtitle{Protocolos para la Transmisión de Audio y Video en Internet}
-\institute{jgb@gsyc.urjc.es \\
-GSyC, Universidad Rey Juan Carlos}
-\author{Jesús M. González Barahona}
-\date[Sept 2017]{20 de septiembre de 2017}
+\institute{\{grex,jgb\}@gsyc.urjc.es \\
+  ETSIT, Universidad Rey Juan Carlos}
+\author{Gregorio Robles y Jesús M. González Barahona}
+\date[Oct 2020]{19 de octubre de 2020}
 
 \frame{
 \maketitle
@@ -116,6 +125,58 @@ errores míos, y no son originarios del libro.\\
 % 
 %\authorimage{}{}
 
+%-----------------------------------------------------
+\begin{frame}
+\frametitle{Ejemplo: transmisión de audio y video (equilibrios)}
+
+{\Large
+\begin{itemize}
+\item Transmisión de ficheros multimedia: \\
+  Pérdidas: \\
+  Retardo: \\
+\item Transmisión en streaming: \\
+  Pérdidas:  \\
+  Retardo:  \\
+\item Transmisión con realimentación (ej: conferencia) \\
+  Pérdidas:  \\
+  Retardo:  \\
+\end{itemize}
+}
+\end{frame}
+
+
+%-----------------------------------------------------
+\begin{frame}
+\frametitle{Ejemplo: transmisión de audio y video}
+
+{\Large
+\begin{itemize}
+\item Transmisión de ficheros multimedia: \\
+  Pérdidas: no \\
+  Retardo: el que haga falta \\
+\item Transmisión en streaming: \\
+  Pérdidas: ninguna, o pocas \\
+  Retardo: moderado \\
+\item Transmisión con realimentación (ej: conferencia) \\
+  Pérdidas: se admiten \\
+  Retardo: mínimo \\
+\end{itemize}
+}
+\end{frame}
+
+%-----------------------------------------------------
+\begin{frame}
+\frametitle{Tipos principales de protocolos}
+
+{\huge
+\begin{itemize}
+\item Transmisión de datos multimedia
+\item Descripcion de sesión, \\
+  relación entre medos \\
+\item Señalización y gestión de sesión  
+\end{itemize}
+}
+\end{frame}
 
 %-----------------------    ---------------------------------
 \section{Introducción}
@@ -197,7 +258,139 @@ errores míos, y no son originarios del libro.\\
 
 \end{frame}
 
+%------------------------------------------------
+%------------------------------------------------
+\section{Calidad de servicio}
 
+%------------------------------------------------
+\begin{frame}
+  \frametitle{Parámetros fundamentales}
+
+  {\Large
+  Lo que importa es la expriencia de usuario
+
+  \vspace{.5cm}
+  
+  Lo que más influye (QoS de la red):
+
+  \begin{itemize}
+  \item Retardo
+  \item Jitter (variación del retardo)
+  \item Pérdida de paquetes
+  \item Ancho de banda
+  \end{itemize}
+  }
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+  \frametitle{Satisfacción según retardo (G.114)}
+
+  \begin{center}
+    \includegraphics[width=11cm]{figs/G114-users-delays}
+  \end{center}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+  \frametitle{QoS para IP (Y.1541)}
+
+  Cada aplicación necesita su QoS
+  
+  \begin{center}
+    \includegraphics[width=11cm]{figs/IP-QoS-clases}
+  \end{center}
+\end{frame}
+
+%------------------------------------------------
+% Explicar con gráfica gausiana, con número de paquetes en Y,
+% retardo en X. Línea vertical en x_0, cuando "tocan" los paquetes.
+% Aumentar el buffer implica desplazar el "cuando toca" a la derecha.
+\begin{frame}
+  \frametitle{Pérdida de paquetes, retardo y jitter}
+
+  Paquete que se retrasa mucho, es paquete perdido
+
+  \vspace{.5cm}
+  
+  En recepción periódica importa:
+  \begin{itemize}
+  \item Retraso: lo que tardo en saber del otro
+  \item Retraso sobre cuándo ``toca entregar'': \\
+    ¿llega a tiempo o ``se pierde''? \\
+  \end{itemize}
+
+  El jitter influye en cuándo hago que ``toque entregar'':
+  \begin{itemize}
+  \item Poco jitter: \\
+    puedo retrasar ``un poquito'' todos los paquetes \\
+    (buffer de recepción) \\
+  \item Mucho jitter: \\
+    retraso mucho, o pierdo mucho
+  \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+  \frametitle{Datos aproximados audioconferencia}
+
+  {\Large
+  \begin{itemize}
+  \item Retardo máximo: del orden de 100-150 ms.
+  \item Jitter (variación de retardo) máximo: 20-40 ms
+  \item Pérdida de paquetes máxima: 1%
+  \item Ancho de banda: desde menos de 10 Kbps
+  \end{itemize}
+  }
+  \vspace{.5cm}
+  \begin{flushright}
+    ITU G.114: \url{https://www.itu.int/rec/T-REC-G.114-200305-I/} \\
+    ITU Y.1541: \url{https://www.itu.int/rec/T-REC-Y.1541-201112-I/} \\
+  \end{flushright}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+  \frametitle{Parámetros de QoS para IP (Y.1541)}
+
+  \begin{center}
+    \includegraphics[width=11cm]{figs/IP-QoS-parameters}
+  \end{center}
+
+  IPDT: IP transfer delay / IPDV: IP delay variation \\
+  IPLR: IP loss ratio / IPER: IP error ratio \\
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+  \frametitle{Retardos típicos (G.114)}
+
+  \begin{center}
+    \includegraphics[width=11cm]{figs/G114-tranmission-delays}
+  \end{center}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+  \frametitle{Posibilidades para streaming}
+
+  Canal TCP (HTTP):
+  \begin{itemize}
+  \item Ordenada: paquetes en recepción disponibles cuando han llegado los anteriores
+  \item Problema: esperamos por paquetes que quizás podríamos no esperar
+  \end{itemize}
+
+  \vspace{.5cm}
+  
+  Paquetes UDP con marcas de orden y/o tiempo (RTP):
+  \begin{itemize}
+  \item Rntrega según marcas
+  \item Problema: sin reenvíos, hay que reconstruir orden
+  \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
 \section{Transporte Multimedia en Redes IP}
 
 \begin{frame}
@@ -289,6 +482,79 @@ ni la congestión de las mismas.
 
 \end{frame}
 
+%-----------------------------------------------------
+%-----------------------------------------------------
+\section{Sesión, medios, señalización}
+
+%-----------------------------------------------------
+\begin{frame}
+\frametitle{Descripción de sesión}
+
+{\Large
+\begin{itemize}
+\item Dónde hay que enviar cada medio
+\item De dónde se recibe cada medio
+\item Qué protocolo de transmisión se usa
+\item Cuándo tienen lugar la sesión
+\item Quién interviene en la sesión (personas)
+\item Título, resumen, etc.
+\item ...
+\end{itemize}
+\vspace{.5cm}
+
+\begin{center}
+  Ejemplo: SDP
+\end{center}
+}
+\end{frame}
+
+%-----------------------------------------------------
+\begin{frame}
+\frametitle{Descripción de relación entre medios}
+
+{\Large
+  \begin{itemize}
+  \item Lista de medios que intervienen
+  \item Medios en secuencia
+  \item Medios en paralelo y sincronización
+  \item Medios alternativos
+  \item ...
+  \end{itemize}
+  
+  \vspace{.5cm}
+
+  \begin{center}
+    Ejemplo: SMIL
+  \end{center}
+}
+
+\end{frame}
+
+%-----------------------------------------------------
+\begin{frame}
+\frametitle{Señalización}
+
+{\Large
+\begin{itemize}
+\item Término de telefonía: reserva de recursos a través de la red para establecer (y garantizar) una llamada
+\item Indicación de llamada / unión a conversación
+\item Aceptación de la indicación
+\item Terminación
+\item Cambio de condiciones de conversación
+\item ...
+\end{itemize}
+\vspace{.5cm}
+
+\begin{center}
+  Ejemplo: SIP
+\end{center}
+}
+\end{frame}
+
+
+%-----------------------------------------------------
+%-----------------------------------------------------
+\section{Caracterización de Internet}
 
 \begin{frame}
 \frametitle{Internet hoy (¿y mañana?)}
