@@ -1,0 +1,343 @@
+% $Id: $
+%
+%
+% Compilar a .pdf con LaTeX (pdflatex)
+% Es necesario instalar Beamer (paquete latex-beamer en Debian)
+%
+
+%
+% Gráficos:
+% Los gráficos pueden suministrarse en PNG, JPG, TIF, PDF, MPS
+% Los EPS deben convertirse a PDF (usar epstopdf)
+%
+
+\documentclass{beamer}
+\usetheme{Warsaw}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphics}
+\usepackage{amssymb} % Simbolos matematicos
+
+%\definecolor{libresoftgreen}{RGB}{162,190,43}
+%\definecolor{libresoftblue}{RGB}{0,98,143}
+
+%\setbeamercolor{titlelike}{bg=libresoftgreen}
+
+%% Metadatos del PDF.
+\hypersetup{
+  pdftitle={Tema 0 - Repaso de Redes},
+  pdfauthor={Gregorio Robles},
+  pdfcreator={GSyC, Universidad Rey Juan Carlos},
+  pdfproducer=PDFLaTeX,
+}
+%%
+
+\begin{document}
+
+\title{Tema 0 - Repaso de Redes}
+\subtitle{Información Audiovisual en Redes de Ordenadores}
+\institute{grex@gsyc.urjc.es \\
+GSyC, Universidad Rey Juan Carlos}
+\author{Gregorio Robles}
+\date{19 de octubre de 2020}
+
+\frame{
+\maketitle
+}
+
+
+% Si el titulo o el autor se quieren acortar para los pies de página
+% se pueden redefinir aquí:
+%\title{Titulo corto}
+%\author{Autores abreviado}
+
+
+%% LICENCIA DE REDISTRIBUCION DE LAS TRANSPAS
+\frame{
+~
+\vspace{4cm}
+
+\begin{flushright}
+{\tiny
+Estas transparencias están basadas en parte \\
+en el siguiente libro
+(que podéis encontrar en la Biblioteca):\\
+\ \\
+RTP: Audio and Video for the Internet\\
+Autor: Colin Perkins\\
+Editorial: Addison Wesley\\
+Fecha de publicación: 2003\\
+ISBN: 0-672-32249-8\\
+\ \\
+Todos los errores en las mismas, se deben a\\
+errores míos, y no son originarios del libro.\\
+\ \\
+%(c) 2008 Gregorio Robles \\
+%  Some rights reserved. This work licensed under Creative Commons
+%  Attribution-ShareAlike License. To view a copy of full license, see
+%
+%  http://creativecommons.org/licenses/by-sa/3.0/ or write to
+%  Creative Commons, 559 Nathan Abbott Way, Stanford,
+%  California 94305, USA.
+}
+\end{flushright}
+}
+%%
+
+%\section{Juicio - Debate}
+
+%\begin{frame}
+%\frametitle{Algunos comentarios previos...}
+
+%\begin{itemize}
+%\item Próximo viernes no hay clase de teoría. Ya la recuperaremos si fuere necesario
+%\item ¡Apuntaos al Moodle! (y poned una foto {\bf vuestra}).
+%\item Mandadme vuestros logins del laboratorio. Fecha límite: domingo 19 de octubre.
+%\item Fecha límite de creación de grupos para documental: 24 de octubre.
+%\item Soluciones a las prácticas (necesito voluntarios).
+%\end{itemize}
+
+%\end{frame}
+
+%\begin{frame}
+%\frametitle{Actividad: Juicio - Debate}
+
+%\begin{itemize}
+%\item Introducción a la actividad
+%\item Presentación de la afirmación
+%\item Votación preliminar (a favor, en contra, abstención)
+%\item Vista oral. Cada parte tendrá:
+%\begin{itemize}
+%  \item 10 minutos para presentar su postura
+%  \item 4 minutos para rebatir
+%  \item 1 minuto para resumir
+%\end{itemize}
+%\item Votación final (a favor, en contra, abstención)
+%\item Discusión / debate
+%\end{itemize}
+
+%\end{frame}
+
+
+%\begin{frame}
+%\frametitle{Actividad: Juicio - Debate}
+
+%\begin{center}
+%\begin{LARGE}
+%"Los servicios orientados a conexión son mejores para tráfico multimedia."
+%\end{LARGE}
+%\end{center}
+
+%\end{frame}
+
+
+\section{Conmutación}
+
+\begin{frame}
+\frametitle{Circuitos vs. paquetes}
+
+\begin{itemize}
+\item Conmutación de circuitos: Los equipos establecen un camino físico antes de la conexión que permanecerá ocupado durante la comunicación. Ejemplo: La Red Telefónica Conmutada.
+\item Conmutación de paquetes: El emisor divide la información en paquetes, que llegan de manera independiente al destino. Ejemplo: Internet.
+\end{itemize}
+
+\end{frame}
+
+
+\section{Principios de una red IP}
+
+\begin{frame}
+\frametitle{The End-to-End Principle (I)}
+
+\begin{itemize}
+\item Es una de las dos aproximaciones para diseñar un sistema de comunicación fiable a través de una red.
+\item En una aproximación, el sistema puede pasar la responsabilidad para la entega correcta de los datos con los propios datos, asegurando fiabilidad en cada salto.
+\item En la otra, la responsabilidad sobre los datos permanece en los puntos finales, asegurando fiabilidad punto a punto incluso si los puntos intermedios son no fiables.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{The End-to-End Principle (y II)}
+
+\begin{itemize}
+\item La consecuencia principal de este principio es que la inteligencia está cuanto más lejos de la red, mejor. Como los puntos intermedios carecen de responsabilidad, pueden ser simples y no necesitan ser robustos.
+\item Así, tenemos un diseño que requiere puntos finales inteligentes y conscientes de la red y una red tonta.
+\item Este diseño se sigue en Internet -probablemente la red más tonta que existe.
+\item El sistema telefónico tradicional, por ejemplo, adopta el modelo contrario: una red inteligente y terminales tontos.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{TCP/IP y el modelo de referencia OSI}
+
+\begin{itemize}
+\item El modelo está compuesto por siete niveles
+\item Cada nivel construye sobre servicios que provee el nivel inferior y ofreciendo servicios de abstracción al superior.
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=6cm]{figs/OSI-reference-model.png}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{TCP/IP y el modelo de referencia OSI (y II)}
+
+\begin{itemize}
+
+\item Para cada nivel del modelo, hay una comunicación (a nivel lógico) entre ese nivel y su equivalente en otro \emph{host}.
+
+\item Podemos utilizar el modelo OSI para describir Internet (aunque no de manera perfecta):
+
+\begin{itemize}
+  \item La arquitectura de Internet ha evolucionado en el tiempo.
+  \item En parte es anterior al modelo OSI.
+  \item La estratificación no es tan estricta.
+\end{itemize}
+
+\item Por tanto, los protocolos \emph{reales} a veces tienen funcionalidad de varios niveles.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{El nivel de Red}
+
+\begin{itemize}
+
+\item En el nivel de red, un protocolo transforma un variedad de redes privadas en Internet: el Protocolo de Internet (IP).
+\item El servicio que ofrece IP a los niveles superiores es sencillo: entrega de datagramas a un destino específico de la mejor manera posible (\emph{best effort}).
+\item Es un servicio tan simple que puede ser utilizado por muchas implementaciones del nivel de enlace.
+\item Pero la sencillez tiene un precio: IP no garantiza que la entrega llegue en un tiempo determinado; ni siquiera que se vaya a entregar.
+\item Los paquetes IP se pueden perder, desordenar, retrasar o corromper en los niveles inferiores.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{El nivel de Red (y II)}
+
+\begin{itemize}
+
+
+\item IP no trata de corregir estos errores; le pasa el problema a los niveles superiores.
+\item Pero provee de los siguientes servicios:
+\begin{itemize}
+  \item Fragmentación, en caso de que el datagrama sea más grande que la unidad máxima de transmisión de la nivel de enlace.
+  \item Un campo de tiempo de vida (TTL) para prevenir \emph{loops}.
+  \item Una etiqueta de tipo de servicio que permite dar prioridad a unos paquetes sobre otros.
+  \item Un identificador del nivel superior para redirigir el paquete correctamente.
+  \item Direccionamiento de los puntos finales (incluyendo la posibilidad de multicast).
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Un paquete IP}
+
+\begin{center}
+  \includegraphics[width=10cm]{figs/format-of-IP-header.png}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Más sobre IP}
+
+\begin{itemize}
+
+\item IP provee una abstracción de una única red, pero eso no cambia la naturaleza de las redes subyacentes.
+
+\item Encima de IP, hay dos protocolos de transporte: Transmission Control Protocol (TCP) y User Datagram Protocol (UDP).
+
+\item TCP se adapta al servicio IP para ofrecer fiabilidad, entrega ordenada, identificación de puertos y una velocidad de transmisión que se adapta a las características de la red.
+
+\item UDP ofrece un servicio similar a IP, solamente añadiendo los puertos.
+
+\item Los puertos son una abstracción que permiten tener varios servicios simultáneos.
+
+\item Idea clave: IP provee abstracción, ocultando a la aplicación los detalles de la topología y los enlaces de la red, aislando los niveles inferiores de las necesidades de las aplicaciones.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Más sobre IP (y II)}
+
+
+
+\begin{center}
+  \includegraphics[width=4cm]{figs/Hourglass-model-of-Internet-Architecture.png}
+\end{center}
+
+\begin{itemize}
+\item De esta manera, el factor determinante para el rendimiento de una red viene dado por el nivel IP.
+\item Los protocolos superiores pueden adaptarse o compensar el comportamiento de IP en cierto grado, pero bajos rendimientos a nivel IP tendrán como resultado bajos rendimientos de todo el sistema.
+\end{itemize}
+
+\end{frame}
+
+\section{Una nueva era}
+
+\begin{frame}
+\frametitle{Una nueva era}
+
+\begin{itemize}
+\item Internet está cambiando:
+\begin{itemize}
+  \item Los contenidos estáticos están dando paso a contenidos multimedia.
+  \item El texto es reemplazado por música y audio.
+  \item El audio y vídeo interactivo se están convirtiendo en algo del día a día.
+\end{itemize}
+\item Estos cambios requieren nuevas aplicaciones, y tienen asociados nuevos desafíos para los diseñadores de aplicaciones.
+
+\item Los nuevos servicios necesarios son:
+\begin{itemize}
+  \item Gestión de la temporización.
+  \item Detección y corrección de pérdidas.
+  \item Identificación de la carga y de la fuente.
+  \item Realimentación por parte del receptor sobre la calidad.
+  \item Sincronización de elementos multimedia.
+  \item Gestión de miembros.
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Nuevos protocolos}
+
+\begin{itemize}
+\item Los \emph{antiguos} protocolos no tienen capacidad para ofrecer estos servicios.
+\item No hay un único protocolo que resuelva todas estas cuestiones.
+\item Hace falta una combinación de protocolos.
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=11cm]{figs/ietf-and-itu-protocols-for-audio-and-video-transport-on-the-Internet.png}
+\end{center}
+
+\end{frame}
+
+
+
+\frame{
+\maketitle
+}
+
+\end{document}

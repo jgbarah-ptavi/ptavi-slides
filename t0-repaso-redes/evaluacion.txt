@@ -1,0 +1,49 @@
+Indica cuál de los siguientes servicios ofrece IP: {
+~ Gestión de la temporización.
+~ Detección y corrección de pérdidas.
+~ Identificación de la carga y de la fuente.
+~ Realimentación por parte del receptor sobre la calidad.
+~ Sincronización de elementos multimedia.
+~ Gestión de miembros.
+= Ninguno de los anteriores.
+}
+
+Indica cuál de los siguientes servicios ofrece TCP: {
+~ Gestión de la temporización.
+= Detección y corrección de pérdidas.
+~ Identificación de la carga y de la fuente.
+~ Realimentación por parte del receptor sobre la calidad.
+~ Sincronización de elementos multimedia.
+~ Gestión de miembros.
+~ Ninguno de los anteriores.
+}
+
+Indica cuál de los siguientes servicios ofrece UDP: {
+~ Gestión de la temporización.
+~ Detección y corrección de pérdidas.
+~ Identificación de la carga y de la fuente.
+~ Realimentación por parte del receptor sobre la calidad.
+~ Sincronización de elementos multimedia.
+~ Gestión de miembros.
+= Ninguno de los anteriores.
+}
+
+Indica las iniciales del protocolo de transporte que se prefiere cuando es necesaria la recepción de un mensaje para poder continuar o los mensajes contienen información no redundante. {UDP}
+
+En TCP los paquetes se pueden perder, desordenar, retrasar o corromper en los niveles inferiores. {T}
+
+Indica las iniciales del protocolo cuando es necesaria la recepción de un mensaje para poder continuar o los mensajes contienen información no redundante. {TCP}
+
+IP provee un mecanismo para determinar si el paquete ha llegado corrompido mediante el Header Checksum. {F}
+
+Los puertos vienen especificados en el nivel de red (IP) para poder ofrecer múltiples servicios desde una misma máquina. {F}
+
+The "End-To-End principle" se basa en: {
+~ Terminales tontos y una red compleja.
+= Terminales inteligentes y una red sencilla.
+}
+
+El tipo de servicio que ofrece IP a los niveles superiores es 
+{best effort}.
+
+¿Qué significa el campo TTL del protocolo IP? {Time to live}
